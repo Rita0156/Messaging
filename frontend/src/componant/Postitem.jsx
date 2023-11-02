@@ -1,10 +1,10 @@
 
 
-const Postitem=()=>{
+export const Postitem=({names,message,time})=>{
     return (
         <div>
             <h2>{names}</h2>
-            <p></p>
+            <p>{time}</p>
             <h3>{message}</h3>
            
         </div>

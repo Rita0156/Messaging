@@ -1,4 +1,4 @@
-
+import {Postitem} from "../componant/Postitem"
 const Homepage=()=>{
     return(
         <div>
@@ -6,7 +6,7 @@ const Homepage=()=>{
 
             </div>
             <div>
-                
+              <Postitem/>
             </div>
         </div>
     )
