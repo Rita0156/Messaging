@@ -1,4 +1,4 @@
-
+const bcrypt=require("bcrypt")
 const Router=require("express")
 const {SignupModel}=require("../Models/Signup")
 const jwt=require("jsonwebtoken")
@@ -18,8 +18,8 @@ SignupControler.post("/signup",(req,res)=>{
             res.send("something went wrong please try again")
         }
         else{
-            const user=new SignupModel.create({
-                name,
+            const user=new SignupModel({
+                 name,
                 email,
                 
                 password:hash
@@ -35,7 +35,7 @@ SignupControler.post("/signup",(req,res)=>{
 })
 SignupControler.post("/login",async(req,res)=>{
     const {email,password,customerId}=req.body;
-    const customer=await SignupModel.findOne({email,name})
+    const customer=await SignupModel.findOne({email})
     const hash=customer.password
     bcrypt.compare(password, hash, function(err, result) {
         // result == true

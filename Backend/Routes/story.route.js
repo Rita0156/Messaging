@@ -1,7 +1,10 @@
-
+const multer  = require('multer')
+const upload = multer({ dest: './Pictures/Rita' })
 const Router=require("express")
 const {PostModel}=require("../Models/Posts")
 const StoryControler=Router()
+
+
 
 StoryControler.get("/story",async(req,res)=>{
       const data=await PostModel.find()
@@ -12,9 +15,14 @@ StoryControler.get("/mystory",async(req,res)=>{
     const mystory=await PostModel.find({_id:req.body.customerId})
     res.send(mystory)
 })
+StoryControler.post('/profile', upload.single('avatar'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    console.log(req.file,req.body)
+  })
 
 StoryControler.post("/create",async(req,res)=>{
-          const {name,message,time,customerId}=req.body;
+          const {name,massage,time,customerId}=req.body;
 
           const story=new PostModel({
             name,
