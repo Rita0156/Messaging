@@ -1,11 +1,14 @@
 //import logo from './logo.svg';
 import './App.css';
-import {LoginFun} from "./Routs/Login"
+import {Allrout} from './Routs/AllRoutes'
+import  Homepage  from './Routs/Home';
 
 function App() {
   return (
     <div className="App">
-        <LoginFun/>
+      
+       
+       <Allrout/>
     </div>
   );
 }
