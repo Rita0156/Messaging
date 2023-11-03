@@ -3,7 +3,7 @@ const Router=require("express")
 const {PostModel}=require("../Models/Posts")
 const StoryControler=Router()
 
-StoryControler.get("/",async(req,res)=>{
+StoryControler.get("/story",async(req,res)=>{
       const data=await PostModel.find()
       res.send(data)
 })
