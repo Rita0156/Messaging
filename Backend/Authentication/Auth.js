@@ -1,7 +1,9 @@
 require("dotenv").config()
 var jwt = require('jsonwebtoken');
 const authentication = (req, res, next) => {
-    
+    if(!req.headers.authorization){
+        res.send("signup first")
+    }
     let token = req.headers.authorization.split(" ")[1];
     
 
