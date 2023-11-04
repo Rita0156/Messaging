@@ -2,7 +2,7 @@ require("dotenv").config()
 var jwt = require('jsonwebtoken');
 const authentication = (req, res, next) => {
     if(!req.headers.authorization){
-        res.send("signup first")
+        res.send("signup first");
     }
     let token = req.headers.authorization.split(" ")[1];
     
@@ -13,7 +13,7 @@ const authentication = (req, res, next) => {
             res.json({Message:"Please login again authentication failed"})
         }
 
-        req.body.customerId=decoded.customerId
+        req.body.customerId=decoded.customerId;
         // res.json({message:"aa ja bata"})
         next();
       });
