@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {Link, Outlet} from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
  const Signup=()=>{
-
+    const navigate = useNavigate()
     const [email,setEmail]=useState("")
     const [pass,setPass]=useState("")
     const [name,setName]=useState("")
@@ -30,9 +30,9 @@ import { useNavigate } from 'react-router-dom'
                console.log(res)
                //localStorage.setItem("app_token",res.token)
            })
-           const navigate = useNavigate();
+           
 
-navigate('/login', { replace: true });
+           navigate('/login', { replace: true });
         
     }
     useEffect(()=>{

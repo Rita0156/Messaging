@@ -1,5 +1,5 @@
 
-export default function MysroryitemPage({user,massage,time,avatar}){
+export default function MysroryitemPage({user,massage,time,avatar,handalEdit}){
     return (
        <div>
            <h2>{user}</h2>

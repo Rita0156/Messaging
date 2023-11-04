@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
  const LoginFun=()=>{
      const [email,setEmail]=useState("")
      const [pass,setPass]=useState("")
+     const navigate = useNavigate()
      const handalSubmit=()=>{
          
             const payload={
@@ -27,7 +28,7 @@ import { useNavigate } from 'react-router-dom'
                 console.log(res)
                 localStorage.setItem("app_token",res.token)
             })
-            const navigate = useNavigate();
+           ;
 
             navigate('/login', { replace: true });
          
