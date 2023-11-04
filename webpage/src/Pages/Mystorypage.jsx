@@ -19,6 +19,9 @@ import MysroryitemPage from "../component/MyStoryData"
             setPos(data.reel)
         })
     }
+    const handalEdit=()=>{
+        
+    }
     useEffect(()=>{
         data()
     },[])

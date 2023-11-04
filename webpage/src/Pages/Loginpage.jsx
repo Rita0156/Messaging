@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
  const LoginFun=()=>{
      const [email,setEmail]=useState("")
      const [pass,setPass]=useState("")
-     const navigate = useNavigate()
+     //const navigate = useNavigate()
      const handalSubmit=()=>{
          
             const payload={
@@ -30,7 +30,7 @@ import { useNavigate } from 'react-router-dom'
             })
            ;
 
-            navigate('/login', { replace: true });
+            //navigate('/login', { replace: true });
          
      }
     return (

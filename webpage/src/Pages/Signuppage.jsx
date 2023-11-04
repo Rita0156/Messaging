@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom'
     const [email,setEmail]=useState("")
     const [pass,setPass]=useState("")
     const [name,setName]=useState("")
+    const [time,setTime]=useState("")
+    const [image,seImage]=useState("")
     const handalSubmit=()=>{
         
            const payload={
                name,
                email,
-               pass
+               pass,
+               time
                //customerId
            }
            //fetch("")
@@ -53,13 +56,12 @@ import { useNavigate } from 'react-router-dom'
            </div>
         <div style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
-        <input type="text" placeholder="enter name" onChange={(e)=>{
-            setName(e.target.value)
-        }} /><br/>
+        
         <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
         <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
-        
-        <button onClick={handalSubmit} style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
+        <input  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} />
+        <input type="text" placeholder="upload image"/>
+        <button onClick={handalSubmit} style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Sing up</button>
        </div>
     </div>
     )
