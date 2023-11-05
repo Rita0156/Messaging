@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import {Link, Outlet} from "react-router-dom"
 import { useNavigate } from 'react-router-dom'
+import axios from "axios"
  const Signup=()=>{
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     const [email,setEmail]=useState("")
     const [pass,setPass]=useState("")
     const [name,setName]=useState("")
     const [time,setTime]=useState("")
-    const [image,seImage]=useState("")
+    
+    
     const handalSubmit=()=>{
         
            const payload={
@@ -31,11 +33,11 @@ import { useNavigate } from 'react-router-dom'
            })
            .then((res)=>{
                console.log(res)
-               //localStorage.setItem("app_token",res.token)
+               
            })
            
 
-           navigate('/login', { replace: true });
+           
         
     }
     useEffect(()=>{
@@ -56,11 +58,10 @@ import { useNavigate } from 'react-router-dom'
            </div>
         <div style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
-        
+        <input type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
         <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
         <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
-        <input  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} />
-        <input type="text" placeholder="upload image"/>
+        
         <button onClick={handalSubmit} style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Sing up</button>
        </div>
     </div>
