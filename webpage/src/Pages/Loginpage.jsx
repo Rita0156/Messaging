@@ -46,11 +46,12 @@ import { useNavigate } from 'react-router-dom'
             <Link to ="/login">Logout</Link>
       
            </div>
-            <div style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
-            <h1>Login Form</h1>
+           <h1>Login Form</h1>
+            <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
+           
             <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
             <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
-            <button onClick={handalSubmit} style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
+            <button  style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
            </div>
         </div>
     )

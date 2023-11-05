@@ -9,7 +9,7 @@ const postsSchema=new mongoose.Schema({
     time:String,
     customerId:String
     
-})
+});
 
 const PostModel=mongoose.model("reel",postsSchema)
 

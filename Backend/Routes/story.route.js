@@ -9,7 +9,7 @@ const path=require("path")
 
 StoryControler.get("/story",async(req,res)=>{
       const data=await PostModel.find()
-      res.send(data)
+      res.json(data)
 })
 
 StoryControler.get("/mystory",async(req,res)=>{

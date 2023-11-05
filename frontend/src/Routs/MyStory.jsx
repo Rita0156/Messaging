@@ -1,9 +1,10 @@
 import { Postitem } from "../componant/Postitem"
 import { useState,useEffect } from "react"
+
  const Mystory=()=>{
     const [pos,setPos]=useState([])
     const data=()=>{
-        fetch("http://localhost:7000/story")
+        fetch("http://localhost:7000/mystory")
         .then((req)=>{
             return req.json()
         })
@@ -22,7 +23,9 @@ import { useState,useEffect } from "react"
             <div>
         {pos.map(item=>{
             <Postitem names={item.name} message={item.message} />
-        })}
+            
+ })}
+ 
       </div>
         </div>
     )

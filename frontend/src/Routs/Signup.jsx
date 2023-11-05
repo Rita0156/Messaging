@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
  const Signup=()=>{
@@ -11,9 +11,10 @@ import { useState } from "react"
             alert("Please fill all the fieldes")
         }else{
            const payload={
-            name,
+               name,
                email,
                pass
+               //customerId
            }
            //fetch("")
            fetch("http://localhost:7000/signup",{
@@ -33,6 +34,9 @@ import { useState } from "react"
            })
         }
     }
+    useEffect(()=>{
+           handalSubmit()
+    },[])
 
 
     return (

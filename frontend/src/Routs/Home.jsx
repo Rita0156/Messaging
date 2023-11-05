@@ -38,9 +38,9 @@ import {Link, Outlet} from "react-router-dom"
 
       <Outlet />
       <div>
-        {pos.map(item=>{
+        {pos.map(item=>(
             <Postitem names={item.name} message={item.message} />
-        })}
+        ))}
       </div>
             
             

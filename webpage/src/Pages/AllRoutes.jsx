@@ -4,6 +4,7 @@ import Homepage from "./Homepage"
 import LoginFun from "./Loginpage"
 import Mystory from "./Mystorypage"
 import Signup from "./Signuppage"
+import CreateStory from "./CreateStory";
 
 export const AllRoutes=()=>{
     return (
@@ -12,6 +13,7 @@ export const AllRoutes=()=>{
         <Route path="mystory" element={<Mystory/>}/>
         <Route path="login" element={<LoginFun/>} />
         <Route path="register" element={<Signup/>} />
+        <Route path="create" element={<CreateStory/>} />
     </Routes>
     )
 }

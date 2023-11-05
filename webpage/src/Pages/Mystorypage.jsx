@@ -15,12 +15,12 @@ import MysroryitemPage from "../component/MyStoryData"
             return req.json()
         })
         .then((data)=>{
-            console.log(data.reel)
-            setPos(data.reel)
+            console.log(data)
+            setPos(data)
         })
     }
     const handalEdit=()=>{
-        
+        <Link></Link>
     }
     useEffect(()=>{
         data()
@@ -34,8 +34,8 @@ import MysroryitemPage from "../component/MyStoryData"
             
             <Link to="/">Home</Link>
             <Link to="/mystory">My Story</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Signup</Link>
+            
+            <Link to="/create">Create</Link>
             <Link to ="/login">Logout</Link>
       
 
@@ -46,7 +46,7 @@ import MysroryitemPage from "../component/MyStoryData"
  
                </div>
                <div>
-                 
+                
                </div>
         </div>
     )
@@ -56,3 +56,6 @@ export default Mystory
 // {pos.map((item)=>(
 //     <MysroryitemPage user={item.name} avatar={item.image} massage={item.massage} time={item.time} handalEdit={handalEdit}/>
 //  ))}
+// {pos.Map((item)=>(
+//     <MysroryitemPage user={item.name} handalEdit={handalEdit(item.id)} massage={item.massage} time={item.time} avatar={item.image} />
+// ))}
