@@ -25,7 +25,7 @@ SignupControler.post("/signup",(req,res)=>{
                 password:hash
             })
             await user.save()
-            res.send("signup successfull")
+            res.json("signup successfull")
         }
     })
     

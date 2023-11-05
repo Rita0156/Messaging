@@ -6,7 +6,8 @@ const postsSchema=new mongoose.Schema({
     name:String,
     massage:String,
     image:String,
-    time:Date
+    time:String,
+    customerId:String
     
 })
 

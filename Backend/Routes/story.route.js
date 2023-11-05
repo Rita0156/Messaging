@@ -29,7 +29,7 @@ const upload = multer({
   storage:storage
 })
 
-StoryControler.post('/profile', upload.single('avatar'), function (req, res, next) {
+StoryControler.post('/upload', upload.single('avatar'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     const {name,massage,time}=req.body;
