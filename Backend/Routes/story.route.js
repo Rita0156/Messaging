@@ -45,23 +45,6 @@ StoryControler.post('/upload', upload.single('avatar'), function (req, res, next
     console.log(req.file,req.body)
   })
 
-StoryControler.post("/create",async(req,res)=>{
-          const {name,massage,time,customerId}=req.body;
-
-          const story=new PostModel({
-            name,
-            massage,
-            time,
-            customerId
-          })
-          try{
-            await story.save()
-            res.send("story created successfully")
-          }
-          catch{
-            res.send("something went wrong")
-          }
-})
 
 StoryControler.patch("/update/noteid",async(req,res)=>{
     const {noteid}=req.params

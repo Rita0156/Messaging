@@ -24,7 +24,7 @@ app.use("/",SignupControler)
 
 
 
-//app.use(authentication)
+app.use(authentication)
 app.use("/",StoryControler)
 
 app.listen(PORT,async()=>{
