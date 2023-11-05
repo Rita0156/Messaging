@@ -26,7 +26,9 @@ import { useNavigate } from 'react-router-dom'
             })
             .then((res)=>{
                 console.log(res)
-                localStorage.setItem("app_token",res.token)
+                if(res.token){
+                    localStorage.setItem("app_token",res.token)
+                }
             })
            ;
 

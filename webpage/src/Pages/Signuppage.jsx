@@ -15,8 +15,8 @@ import axios from "axios"
            const payload={
                name,
                email,
-               pass,
-               time
+               pass
+               
                //customerId
            }
            //fetch("")
@@ -56,13 +56,13 @@ import axios from "axios"
             <Link to ="/login">Logout</Link>
       
            </div>
-        <div style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
+        <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
         <input type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
         <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
         <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
         
-        <button onClick={handalSubmit} style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Sing up</button>
+        <button type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Sing up</button>
        </div>
     </div>
     )
