@@ -25,7 +25,8 @@ export default function CreateStory(){
         const fetchData= ()=>{ fetch("http://localhost:7000/upload",{
             method:"POST",
             headers:{
-                "content-type":"application/json",
+                "Content-Type": "application/json",
+                //"content-type":"application/json",
                 "authorazation":"bearer"+" "+ token
             },
             body:JSON.stringify(payload)
