@@ -3,23 +3,44 @@ import axios from "axios"
 
 export default function CreateStory(){
     const token=localStorage.getItem("app_token")
+    if(token==null){
+        <Navigate to="/login" replace={true} />
+     }
     const [name,setName]=useState("")
     const [massage,setMassage]=useState("")
     const [image,seImage]=useState("")
     const [time,setTime]=useState("")
     //const []=useState("")
   
-   const handalSubmit=()=>{
+   const handalSubmit=(event)=>{
+    event.preventDefault()
     const formdata=new FormData()
         formdata.append("file",image)
-          axios.post("http://localhost:7000/upload",formdata)
+    const payload={
+        name,
+        massage,
+        formdata,
+        time
+    }
+        const fetchData= ()=>{ fetch("http://localhost:7000/upload",{
+            method:"POST",
+            headers:{
+                "content-type":"application/json",
+                "authorazation":"bearer"+" "+ token
+            },
+            body:JSON.stringify(payload)
+          })
+          .then((req)=>{return req.json()})
           .then((res)=>console.log(res))
         .catch(err=>console.log(err))
+        }
+
+        useEffect(()=>{
+            fetchData()
+    },[])
    }
 
-   useEffect(()=>{
-           handalSubmit()
-   },[])
+  
 
     return (
         <div>

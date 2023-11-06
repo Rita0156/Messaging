@@ -1,13 +1,14 @@
 //import { application, json } from "express"
 import React, { useState } from "react"
 import {Link} from "react-router-dom"
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
  const LoginFun=()=>{
      const [email,setEmail]=useState("")
      const [pass,setPass]=useState("")
      //const navigate = useNavigate()
-     const handalSubmit=()=>{
-         
+     const [isAuth,setAuth]=useState(false)
+     const handalSubmit=(e)=>{
+        e.preventDefault()
             const payload={
                 email,
                 pass
@@ -28,9 +29,13 @@ import { useNavigate } from 'react-router-dom'
                 console.log(res)
                 if(res.token){
                     localStorage.setItem("app_token",res.token)
+                    setAuth(true)
                 }
             })
-           ;
+           if(isAuth){
+                 //<navigate path=""/>
+                 <Navigate to="/" replace={true}/>
+           }
 
             //navigate('/login', { replace: true });
          
@@ -47,12 +52,14 @@ import { useNavigate } from 'react-router-dom'
       
            </div>
            <h1>Login Form</h1>
-            <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
+            <form onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
            
             <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
             <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
             <button  style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
-           </div>
+           </form>
+           <p>If you don't have create your account here </p>
+           <Link to="/register">Signup here</Link>
         </div>
     )
 }

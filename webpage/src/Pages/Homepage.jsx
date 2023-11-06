@@ -1,11 +1,14 @@
 //import {Postitem} from "../componant/Postitem"
 import { useEffect, useState } from "react"
-import {Link, Outlet} from "react-router-dom"
-import Story from "../component/allstory"
+import {Link, Navigate, Outlet} from "react-router-dom"
+//import Story from "../component/allstory"
 import ItemPage from "../component/Item"
- const Homepage=()=>{
+ const Homepage=({childrean})=>{
   const [posts,setPos]=useState([])
   const token=localStorage.getItem("app_token")
+ if(token==null){
+    <Navigate to="/login" replace={true} />
+ }
   const data=()=>{
     fetch("http://localhost:7000/story",{
         method:"GET",
@@ -25,6 +28,9 @@ import ItemPage from "../component/Item"
 useEffect(()=>{
   data()
 },[])
+if(token==null){
+
+}
     return(
         <div>
             <h1>Home page</h1>
@@ -36,11 +42,11 @@ useEffect(()=>{
             <Link to ="/login">Logout</Link>
       
            </div>
-      <div>
-        {posts.map((item)=>
+      
+        {posts.forEach((item)=>
         <ItemPage user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
          )}
-      </div>
+     
             
             
         </div>

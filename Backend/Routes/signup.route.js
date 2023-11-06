@@ -15,7 +15,7 @@ SignupControler.post("/signup",(req,res)=>{
     bcrypt.hash(password, 5,async function(err, hash) {
         // Store hash in your password DB.
         if(err){
-            res.send("something went wrong please try again")
+            res.json("something went wrong please try again")
         }
         else{
             const user=new SignupModel({
@@ -40,13 +40,14 @@ SignupControler.post("/login",async(req,res)=>{
     bcrypt.compare(password, hash, function(err, result) {
         // result == true
         if(err){
-            res.send("something went wrong please try again")
+            res.json("something went wrong please try again",err)
+            console.log(err)
         }
         if(result){
               const token=jwt.sign({customerId:customer._id},Secrete)
-              res.send("Login successfull"+" "+token)
+              res.json("Login successfull"+" "+token)
         }else{
-            res.send("Invalid credential")
+            res.json("Invalid credential")
         }
         
     });

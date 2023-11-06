@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
-import {Link, Outlet} from "react-router-dom"
-import { useNavigate } from 'react-router-dom'
-import axios from "axios"
+import {Link} from "react-router-dom"
+import { Navigate } from 'react-router-dom'
+//import axios from "axios"
  const Signup=()=>{
     //const navigate = useNavigate()
     const [email,setEmail]=useState("")
     const [pass,setPass]=useState("")
     const [name,setName]=useState("")
-    const [time,setTime]=useState("")
+    //const [time,setTime]=useState("")
     
     
-    const handalSubmit=()=>{
-        
+    const handalSubmit=(e)=>{
+       // e.preventDefault()
            const payload={
                name,
                email,
@@ -33,7 +33,13 @@ import axios from "axios"
            })
            .then((res)=>{
                console.log(res)
+               if(res){
+                <Navigate to="/login" replace={true} /> 
+               }
                
+           })
+           .catch((err)=>{
+            console.log(err)
            })
            
 
@@ -42,6 +48,7 @@ import axios from "axios"
     }
     useEffect(()=>{
            handalSubmit()
+          
     },[])
 
 
@@ -56,14 +63,16 @@ import axios from "axios"
             <Link to ="/login">Logout</Link>
       
            </div>
-        <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
+        <form onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
         <input type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
         <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
         <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
         
         <button type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} >Sing up</button>
-       </div>
+       </form>
+       <p>If you have account then</p>
+       <Link to="/login">Login here</Link>
     </div>
     )
 }

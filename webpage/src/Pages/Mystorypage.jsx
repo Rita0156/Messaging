@@ -6,6 +6,9 @@ import MysroryitemPage from "../component/MyStoryData"
  const Mystory=()=>{
     const token=localStorage.getItem("app_token")
     const [pos,setPos]=useState([])
+    if(token==null){
+        <Navigate to="/login" replace={true} />
+     }
     const data=()=>{
         fetch("http://localhost:7000/mystory",{
             method:"GET",

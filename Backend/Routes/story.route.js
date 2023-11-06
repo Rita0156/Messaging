@@ -14,7 +14,7 @@ StoryControler.get("/story",async(req,res)=>{
 
 StoryControler.get("/mystory",async(req,res)=>{
     const mystory=await PostModel.find({_id:req.body.customerId})
-    res.send(mystory)
+    res.json(mystory)
 })
 
 const storage=multer.diskStorage({
@@ -32,12 +32,13 @@ const upload = multer({
 StoryControler.post('/upload', upload.single('avatar'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
-    const {name,massage,time}=req.body;
-    PostModel.create({
+    const {name,massage,time,image,customerId}=req.body;
+    PostModel({
       name,
       massage,
       time,
-      image:req.file.filename
+      image:req.file.filename,
+      customerId
 
     })
     .then((result)=>{res.json(result)})
