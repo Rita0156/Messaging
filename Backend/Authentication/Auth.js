@@ -4,7 +4,7 @@ const authentication = (req, res, next) => {
     if(!req.headers.authorization){
         res.json("signup first");
     }
-    let token = req.headers.authorization.trim().split(" ")[1];
+    const token = req.headers.authorization.trim().split(" ")[1];
     
 
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {

@@ -16,10 +16,10 @@ app.use(express.json())
 
 
 app.get("/",(req,res)=>{
-    res.send("api is working currect")
+    return res.send("api is working currect")
 })
-app.use(cors())
-app.use("/",SignupControler)
+app.use(cors());
+app.use("/",SignupControler);
 
 
 
@@ -29,7 +29,7 @@ app.use("/",StoryControler)
 
 app.listen(PORT,async()=>{
    try{
-      await connectDB
+      await connectDB;
       console.log("connected to db")
    }
    catch(arr){

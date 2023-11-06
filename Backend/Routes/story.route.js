@@ -29,21 +29,27 @@ const upload = multer({
   storage:storage
 })
 
-StoryControler.post('/upload', upload.single('avatar'), function (req, res, next) {
+StoryControler.post('/upload', upload.single('avatar'),async function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+    
     const {name,massage,time,image,customerId}=req.body;
-    PostModel({
+     image=req.file.filename;
+    const user=new PostModel({
       name,
       massage,
       time,
-      image:req.file.filename,
+      image ,
       customerId
 
     })
-    .then((result)=>{res.json(result)})
-    .catch((err)=>console.log(err))
-    console.log(req.file,req.body)
+    try{
+      await user.save()
+      res.json("story created")
+    }
+    catch{
+      res.json("story not created")
+    }
   })
 
 

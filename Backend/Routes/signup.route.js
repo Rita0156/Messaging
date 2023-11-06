@@ -8,29 +8,25 @@ require('dotenv').config()
 const Secrete=process.env.JWT_SECRET
 
 SignupControler.post("/signup",(req,res)=>{
-    let payload = req.body;
-    
-    const { password ,email,name} = req.body;
-    
-    bcrypt.hash(password, 5,async function(err, hash) {
-        // Store hash in your password DB.
-        if(err){
-            res.json("something went wrong please try again")
-        }
-        else{
-            const user=new SignupModel({
-                 name,
-                email,
-                
-                password:hash
-            })
-            await user.save()
+    const { email, password ,name} = req.body;
+     bcrypt.hash(password,5,async function(err,hash){
+         if(err){
+            res.json("plaese try again")
+         }
+         const customer= new SignupModel.create({
+            name,
+            email,
+            password:hash
+         })
+         try{
+            await customer.save()
             res.json("signup successfull")
-        }
-    })
-    
-//await new_data.save();
-
+         }
+         catch(err){
+             res.json({massage:"something went wrong",err})
+         }
+     })
+    // res.json("Signup Successfull")
     
 })
 SignupControler.post("/login",async(req,res)=>{
@@ -39,13 +35,14 @@ SignupControler.post("/login",async(req,res)=>{
     const hash=customer.password
     bcrypt.compare(password, hash, function(err, result) {
         // result == true
+        //console.log(hash,"   ",password)
         if(err){
             res.json("something went wrong please try again",err)
-            console.log(err)
+            //console.log(err)
         }
         if(result){
               const token=jwt.sign({customerId:customer._id},Secrete)
-              res.json("Login successfull"+" "+token)
+              res.json("Login successfull",token)
         }else{
             res.json("Invalid credential")
         }
