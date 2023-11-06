@@ -1,6 +1,6 @@
 //import { Postitem } from "../componant/Postitem"
 import { useState,useEffect } from "react"
-import {Link} from "react-router-dom"
+import {Link,Navigate} from "react-router-dom"
 //import Edit from "../component/Edit"
 import MysroryitemPage from "../component/MyStoryData"
  const Mystory=()=>{
@@ -22,8 +22,8 @@ import MysroryitemPage from "../component/MyStoryData"
             setPos(data)
         })
     }
-    const handalEdit=()=>{
-        <Link></Link>
+    const handalEdit=(id)=>{
+        <Link to="/edit"></Link>
     }
     useEffect(()=>{
         data()

@@ -5,8 +5,16 @@ export default function Edit(event){
     const [name,setname]=useState("")
     const [massage,setMassage]=useState("")
     const [time,setTime]=useState("")
-    const handalUpload=(e)=>{
-        
+    const handalUpload=(e,id)=>{
+        e.preventDefault()
+        const payload={
+            name,
+            massage,
+            time
+        }
+        const patchData=()=>{
+            fetch(`http://localhost:7000/edit/`)
+        }
     }
     return (
         <div>
@@ -17,7 +25,7 @@ export default function Edit(event){
             <input type="text" onChange={(e)=>{setname(e.target.value)}} placeholder="enter name" /> <br/>
             <input  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
             
-            <input type="submit" value="Submit" class="btn btn-default"/> 
+            <input type="submit" value="Update" class="btn btn-default"/> 
             </div>
            </form>
            

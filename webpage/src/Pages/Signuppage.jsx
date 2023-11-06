@@ -54,7 +54,7 @@ import { Navigate } from 'react-router-dom'
 
     return (
         <div style={{marginTop:"100px"}}>
-            <div style={{width:"95%", display:"flex", justifyContent:"space-around", paddingLeft:"70px",paddingRight:"70px"} }>  
+            <div style={{width:"95%", display:"flex", justifyContent:"space-around", paddingLeft:"70px",paddingRight:"70px",marginBottom:"50px"} }>  
             
             <Link to="/">Home</Link>
             <Link to="/mystory">My Story</Link>
@@ -66,8 +66,8 @@ import { Navigate } from 'react-router-dom'
         <form onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
         <input type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
-        <input  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
-        <input  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
+        <input  type="text" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
+        <input  type="text" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
         
         <button type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} >Sing up</button>
        </form>

@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react"
 import {Link, Navigate, Outlet} from "react-router-dom"
 //import Story from "../component/allstory"
+//import { Navigate } from "react-router-dom"
 import ItemPage from "../component/Item"
- const Homepage=({childrean})=>{
+ const Homepage=()=>{
   const [posts,setPos]=useState([])
   const token=localStorage.getItem("app_token")
  if(token==null){
@@ -43,9 +44,7 @@ if(token==null){
       
            </div>
       
-        {posts.forEach((item)=>
-        <ItemPage user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
-         )}
+       
      
             
             
@@ -53,3 +52,6 @@ if(token==null){
     )
 }
 export default Homepage
+// {posts.forEach((item)=>
+//     <ItemPage user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
+//      )}
