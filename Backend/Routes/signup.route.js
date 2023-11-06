@@ -13,7 +13,7 @@ SignupControler.post("/signup",(req,res)=>{
          if(err){
             res.json("plaese try again")
          }
-         const customer= new SignupModel.create({
+         const customer= new SignupModel({
             name,
             email,
             password:hash
