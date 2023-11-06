@@ -49,7 +49,9 @@ import MysroryitemPage from "../component/MyStoryData"
  
                </div>
                <div>
-                
+               {pos.map((item)=>(
+                  <MysroryitemPage user={item.name} avatar={item.image} massage={item.massage} time={item.time} handalEdit={handalEdit}/>
+                 ))}
                </div>
         </div>
     )
