@@ -14,27 +14,33 @@ export default function CreateStory(){
   
    const handalSubmit=(event)=>{
     event.preventDefault()
+    console.log("start on submit")
     const formdata=new FormData()
         formdata.append("file",image)
+        console.log(formdata,"form",image)
+        
     const payload={
         name,
         massage,
         formdata,
-        time
+        time,
+        image
     }
-        const fetchData= ()=>{ fetch("http://localhost:7000/upload",{
+    console.log(payload,"payload")
+         fetch("http://localhost:7000/upload",{
             method:"POST",
             headers:{
                 "Content-Type": "application/json",
                 //"content-type":"application/json",
                 "authorazation":"bearer"+" "+ token
             },
-            body:JSON.stringify(payload)
+            body:JSON.stringify()
+
           })
           .then((req)=>{return req.json()})
           .then((res)=>console.log(res))
         .catch(err=>console.log(err))
-        }
+        
 
         
    }
@@ -49,12 +55,12 @@ export default function CreateStory(){
             <div style={{width:"80%",margin:"auto"}} class="form-group">
             <h2 >Create Story</h2>
              
-            <input type="text" placeholder="enter name" onChange={(e)=>{setName(e.target.value)}} /> <br/>
+            <input type="text" placeholder="enter post name" onChange={(e)=>{setName(e.target.value)}} /> <br/>
             <input type="text"  placeholder="enter message" onChange={(e)=>{setMassage(e.target.value)}} /><br/>
             <input  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
             <input style={{marginLeft:"50px"}} type="file" placeholder="upload image" onChange={(e)=>{seImage(e.target.files[0])}}/><br/>
            
-            <input style={{backgroundColor:"green", color:"white", border:"none",fontWeight:"bold",padding:"4px",marginTop:"15px"}} type="submit" value="Posts" class="btn btn-default"/> 
+            <input style={{backgroundColor:"green", color:"white", border:"none",fontWeight:"bold",padding:"4px",marginTop:"15px",cursor:"pointer"}} type="submit" value="Posts" class="btn btn-default"/> 
             </div>
            </form>
            <Link to="/mystory">Go Back</Link>

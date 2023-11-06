@@ -22,19 +22,28 @@ const storage=multer.diskStorage({
       cb(null,"Pictures/Rita")
     },
     filename:(req,file,cb)=>{
-       cb(null,file.fieldname + "_"+Date.now()+path.extname(file.originalname))
+       cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
     }
+    
 })
+
 const upload = multer({
   storage:storage
 })
+//console.log(storage,"storage")
+//console.log(upload,"upload")
 
-StoryControler.post('/upload', upload.single('avatar'),async function (req, res, next) {
+StoryControler.post('/upload', upload.single('file'),async function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+    console.log(req.file,"filename");
+
     
-    const {name,massage,time,image,customerId}=req.body;
+    const {name,massage,time,customerId,image}=req.body;
+    
      image=req.file.filename;
+    
+    
     const user=new PostModel({
       name,
       massage,
@@ -44,11 +53,13 @@ StoryControler.post('/upload', upload.single('avatar'),async function (req, res,
 
     })
     try{
+      console.log("try")
       await user.save()
-      res.json("story created")
+      res.json("story created");
     }
     catch{
-      res.json("story not created")
+      console.log("catch")
+      res.json("story not created");
     }
   })
 

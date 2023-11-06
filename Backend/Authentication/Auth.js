@@ -1,12 +1,14 @@
 require("dotenv").config()
 var jwt = require('jsonwebtoken');
 const authentication = (req, res, next) => {
-    if(!req.headers.authorization){
+    if(!req.headers.authorazation){
         res.json("signup first");
     }
-    const token = req.headers.authorization.trim().split(" ")[1];
+    console.log(req.headers,"header")
+    const token = req.headers.authorazation.split(" ")[1];
     
-
+      console.log(token,"token")
+      
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
         
         if (err) {

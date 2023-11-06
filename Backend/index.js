@@ -16,7 +16,7 @@ app.use(express.json())
 
 
 app.get("/",(req,res)=>{
-    return res.send("api is working currect")
+    return res.send("api is working currect");
 })
 app.use(cors());
 app.use("/",SignupControler);
@@ -24,7 +24,8 @@ app.use("/",SignupControler);
 
 
 
-app.use(authentication)
+app.use(authentication);
+
 app.use("/",StoryControler)
 
 app.listen(PORT,async()=>{

@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom'
      const [pass,setPass]=useState("")
      //const navigate = useNavigate()
      const [isAuth,setAuth]=useState(false)
-     const handalSubmit=(e)=>{
+     const handalSubmit=()=>{
         //e.preventDefault()
             const payload={
                 email,
@@ -53,11 +53,11 @@ import { Navigate } from 'react-router-dom'
       
            </div>
            
-            <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto",marginTop:"50px"}}>
+            <div  style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto",marginTop:"50px"}}>
             <h1>Login Form</h1>
-            <input  type="text" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
-            <input  type="text" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
-            <button  style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
+            <input  type="text"  placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
+            <input  type="text"  onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
+            <button onClick={handalSubmit}  style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
            </div>
            <p>If you don't have create your account here </p>
            <Link to="/register">Signup here</Link>

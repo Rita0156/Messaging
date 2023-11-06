@@ -13,4 +13,4 @@ const postsSchema=new mongoose.Schema({
 
 const PostModel=mongoose.model("reel",postsSchema)
 
-module.exports={PostModel}
+module.exports={PostModel};

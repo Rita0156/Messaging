@@ -45,7 +45,7 @@ if(token==null){
            </div>
       
            <div>
-           {posts.forEach((item)=>
+           {posts.map((item)=>
                  <ItemPage user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
              )}
            </div>

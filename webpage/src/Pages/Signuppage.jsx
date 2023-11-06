@@ -10,7 +10,7 @@ import { Navigate } from 'react-router-dom'
     //const [time,setTime]=useState("")
     
     
-    const handalSubmit=(e)=>{
+    const handalSubmit=()=>{
         //e.preventDefault()
            const payload={
                name,
@@ -46,10 +46,7 @@ import { Navigate } from 'react-router-dom'
            
         
     }
-    useEffect(()=>{
-           handalSubmit()
-          
-    },[])
+    
 
 
     return (
@@ -63,13 +60,13 @@ import { Navigate } from 'react-router-dom'
             <Link to ="/login">Logout</Link>
       
            </div>
-        <div onSubmit={handalSubmit} style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
+        <div  style={{ border:"3px solid black", width:"20%",padding:"30px",margin:"auto"}}>
         <h1>Signup Form</h1>
         <input type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
         <input  type="text" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
         <input  type="text" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
         
-        <button type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} >Sing up</button>
+        <button onClick={handalSubmit} type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"none",borderRadius:"8px",cursor:"pointer"}} >Sing up</button>
        </div>
        <p>If you have account then</p>
        <Link to="/login">Login here</Link>
