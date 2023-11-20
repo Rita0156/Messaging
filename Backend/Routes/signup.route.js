@@ -1,10 +1,10 @@
-const bcrypt=require("bcryptjs")
-const Router=require("express")
-const {SignupModel}=require("../Models/Signup")
-const jwt=require("jsonwebtoken")
-const { configDotenv } = require("dotenv")
-const SignupControler=Router()
-require('dotenv').config()
+const bcrypt=require("bcryptjs");
+const Router=require("express");
+const {SignupModel}=require("../Models/Signup");
+const jwt=require("jsonwebtoken");
+const { configDotenv } = require("dotenv");
+const SignupControler=Router();
+require('dotenv').config();
 const Secrete=process.env.JWT_SECRET
 
 SignupControler.post("/signup",async(req,res)=>{
