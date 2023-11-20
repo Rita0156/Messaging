@@ -3,6 +3,8 @@ import { useState,useEffect } from "react"
 import {Link,Navigate} from "react-router-dom"
 //import Edit from "../component/Edit"
 import MysroryitemPage from "../component/MyStoryData"
+import "./mystory.css"
+
  const Mystory=()=>{
     const token=localStorage.getItem("app_token")
     const [pos,setPos]=useState([])
@@ -33,13 +35,13 @@ import MysroryitemPage from "../component/MyStoryData"
         <div>
             <h3>My Story</h3>
             
-            <div style={{width:"95%", display:"flex", justifyContent:"space-around", paddingLeft:"70px",paddingRight:"70px"} }>  
+            <div className="navbar">  
             
-            <Link to="/">Home</Link>
-            <Link to="/mystory">My Story</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
-            <Link to="/create">Create</Link>
-            <Link to ="/login">Logout</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/create">Create</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
 
       

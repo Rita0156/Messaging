@@ -16,7 +16,7 @@ app.use(express.json())
 
 
 app.get("/",(req,res)=>{
-    return res.send("api is working currect");
+    return res.send("api is working currect ");
 })
 app.use(cors());
 app.use("/",SignupControler);

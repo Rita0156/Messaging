@@ -4,10 +4,13 @@ const authentication = (req, res, next) => {
     if(!req.headers.authorazation){
         res.json("signup first");
     }
-    console.log(req.headers,"header")
+    //console.log(req.headers,"header");
+    
+
     const token = req.headers.authorazation.split(" ")[1];
     
       console.log(token,"token")
+
       
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
         
@@ -24,3 +27,4 @@ const authentication = (req, res, next) => {
 module.exports = {
     authentication
 }
+

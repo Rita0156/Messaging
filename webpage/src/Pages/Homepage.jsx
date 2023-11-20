@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import {Link, Navigate, Outlet} from "react-router-dom"
 //import Story from "../component/allstory"
 //import { Navigate } from "react-router-dom"
+import "./homepage.css"
 import ItemPage from "../component/Item"
  const Homepage=()=>{
   const [posts,setPos]=useState([])
@@ -35,12 +36,12 @@ if(token==null){
     return(
         <div>
             <h1>Home page</h1>
-           <div style={{width:"95%", display:"flex", justifyContent:"space-around", paddingLeft:"70px",paddingRight:"70px"} }>  
+           <div className="navbar">  
             
-            <Link to="/">Home</Link>
-            <Link to="/mystory">My Story</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
-            <Link to ="/login">Logout</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
            </div>
       

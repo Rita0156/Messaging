@@ -37,6 +37,7 @@ StoryControler.post('/upload', upload.single('file'),async function (req, res, n
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     console.log(req.file,"filename");
+    
 
     
     const {name,massage,time,customerId,image}=req.body;

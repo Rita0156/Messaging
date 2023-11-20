@@ -1,6 +1,8 @@
 import axios from "axios"
+import { useEffect } from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import "./edit.css"
 export default function Edit(event){
    // event.preventDefault()
     const [name,setname]=useState("")
@@ -14,7 +16,7 @@ export default function Edit(event){
             massage,
             time
         }
-        const patchData=()=>{
+        
             fetch(`http://localhost:7000/edit/${id}`,{
                 method:"PATCH",
                 headers:{
@@ -25,22 +27,30 @@ export default function Edit(event){
             })
             .then((req)=>req.json())
             .then((res)=>console.log(res))
-        }
+        
     }
+   
     return (
         <div>
+            <div className="navbar">
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/login">Login</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/register">Signup</Link>
+            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
+            </div>
             <form onSubmit={handalUpload} action="/stats" enctype="multipart/form-data" method="post">
                 <h1>Update The story</h1>
-            <div style={{width:"30%",margin:"auto",border:"2px solid black",padding:"20px"}} class="form-group">
+            <div style={{width:"30%",margin:"auto",border:"2px solid white",padding:"20px",marginBottom:"20px"}} class="form-group">
              
-             <input type="text" onChange={(e)=>{setMassage(e.target.value)}} class="form-control" placeholder="enter message" /><br/>
-            <input type="text" onChange={(e)=>{setname(e.target.value)}} placeholder="enter name" /> <br/>
-            <input  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
+             <input style={{fontSize:"17px",width:"50%",marginBottom:"10px"}} type="text" onChange={(e)=>{setMassage(e.target.value)}} class="form-control" placeholder="enter message" /><br/>
+            <input style={{fontSize:"17px",width:"50%",marginBottom:"10px"}} type="text" onChange={(e)=>{setname(e.target.value)}} placeholder="enter name" /> <br/>
+            <input style={{fontSize:"17px",width:"50%"}}  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
             
-            <input style={{backgroundColor:"green", color:"white", border:"none",fontWeight:"bold",padding:"4px",marginTop:"15px"}} type="submit" value="Update" class="btn btn-default"/> 
+            <input style={{backgroundColor:"green", color:"white", border:"2px solid white",fontWeight:"bold",padding:"4px",marginTop:"15px"}} type="submit" value="Update" class="btn btn-default"/> 
             </div>
            </form>
-           <Link to="/mystory">Go Back</Link>
+           <Link style={{color:"white"}} to="/mystory">Go Back</Link>
         </div>
     )
 }

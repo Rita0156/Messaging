@@ -7,29 +7,33 @@ const SignupControler=Router()
 require('dotenv').config()
 const Secrete=process.env.JWT_SECRET
 
-SignupControler.post("/signup",(req,res)=>{
+SignupControler.post("/signup",async(req,res)=>{
     const { email, pass ,name} = req.body;
-    console.log(req.body,"req body")
-     bcrypt.hash(pass,5,async function(err,hash){
-         if(err){
-            console.log("err errr",err)
-            res.json("plaese try again",err);
-         }
-         console.log("outside req");
-         const customer= new SignupModel({
-            name,
-            email,
-            password:hash,
-            customerId:req._id
-         })
-         try{
-            await customer.save()
-            res.json("signup successfull")
-         }
-         catch(err){
-             res.json({massage:"something went wrong",err})
-         }
-     })
+    console.log(req.body,"req body");
+     const isPresent=await SignupModel.find({email});
+
+     if(isPresent==false){
+        bcrypt.hash(pass,5,async function(err,hash){
+            if(err){
+               console.log("err errr",err);
+               res.json("plaese try again",err);
+            }
+            console.log("outside req");
+            const customer= new SignupModel({
+               name,
+               email,
+               password:hash,
+               customerId:req._id
+            })
+            try{
+               await customer.save()
+               res.json("signup successfull")
+            }
+            catch(err){
+                res.json({massage:"something went wrong",err})
+            }
+        })
+     }
     // res.json("Signup Successfull")
     
 })
