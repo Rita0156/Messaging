@@ -19,10 +19,10 @@ StoryControler.get("/mystory",async(req,res)=>{
 
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
-      cb(null,"Pictures/Rita")
+      cb(null,"pictures")
     },
     filename:(req,file,cb)=>{
-       cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
+       cb(null,file.fieldname+"_"+Date.now())
     }
     
 })
@@ -33,36 +33,40 @@ const upload = multer({
 //console.log(storage,"storage")
 //console.log(upload,"upload")
 
-StoryControler.post('/upload', upload.single('file'),async function (req, res, next) {
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
-    console.log(req.file,"filename");
-    
 
-    
-    const {name,massage,time,customerId,image}=req.body;
-    
-     image=req.file.filename;
-    
-    
-    const user=new PostModel({
-      name,
-      massage,
-      time,
-      image ,
-      customerId
-
-    })
-    try{
-      console.log("try")
-      await user.save()
-      res.json("story created");
-    }
-    catch{
-      console.log("catch")
-      res.json("story not created");
-    }
+StoryControler.get('/', (req, res) => {
+  PostModel.find({})
+  .then((data, err)=>{
+      if(err){
+          console.log(err);
+      }
+      res.render('imagepage',{items: data})
   })
+});
+
+
+StoryControler.post('/upload', upload.single('image'), (req, res, next) => {
+ 
+  var obj = {
+      name: req.body.name,
+      message: req.body.message,
+      time:req.body.time,
+      img: {
+          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          contentType: 'image/png'
+      }
+  }
+  PostModel.create(obj)
+  .then ((err, item) => {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          // item.save();
+          res.redirect('/');
+      }
+  });
+});
 
 
 StoryControler.patch("/update/noteid",async(req,res)=>{

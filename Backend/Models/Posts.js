@@ -5,9 +5,14 @@ const mongoose=require("mongoose")
 const postsSchema=new mongoose.Schema({
     name:String,
     massage:String,
-    image:String,
+
     time:String,
-    customerId:String
+    customerId:String,
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
     
 });
 

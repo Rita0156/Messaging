@@ -5,11 +5,11 @@ const authentication = (req, res, next) => {
         res.json("signup first");
     }
     //console.log(req.headers,"header");
-    
+
 
     const token = req.headers.authorazation.split(" ")[1];
     
-      console.log(token,"token")
+      console.log(token,"token");
 
       
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {

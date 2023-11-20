@@ -2,6 +2,7 @@ const express=require("express")
 require('dotenv').config()
 const PORT=process.env.PORT || 7500
 const {connectDB}=require("./confing/db.js")
+var bodyParser = require('body-parser');
 //const {SignupModel}=require("./Models/Signup.js")
 //const {PostModel}=require("./Models/Posts.js")
 const {authentication}=require("./Authentication/Auth.js")
@@ -11,6 +12,9 @@ const {SignupControler}=require("./Routes/signup.route.js")
 const {StoryControler}=require("./Routes/story.route.js")
 
 const app=express()
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use(express.json())
 
