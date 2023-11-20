@@ -4,23 +4,19 @@ import {  Link, Navigate} from "react-router-dom"
 import "./createstory.css"
 export default function CreateStory(){
     const token=localStorage.getItem("app_token")
-    if(token==null){
-        <Navigate to="/login" replace={true} />
-     }
+    
     const [name,setName]=useState("")
     const [massage,setMassage]=useState("")
     const [image,setImage]=useState("")
     const [time,setTime]=useState("")
     //const []=useState("")
-   const uploadImage=()=>{
-    const formdata=new FormData()
-    formdata.append("file",image)
-   }
+   
   
    const handalSubmit=(event)=>{
     event.preventDefault()
     console.log("start on submit")
-    
+    const formdata=new FormData()
+    formdata.append("file",image)
        
         
     const payload={
@@ -38,7 +34,7 @@ export default function CreateStory(){
                 //"content-type":"application/json",
                 "authorazation":"bearer"+" "+ token
             },
-            body:JSON.stringify(payload)
+            body:JSON.stringify(formdata)
 
           })
           .then((req)=>{return req.json()})
@@ -52,7 +48,10 @@ export default function CreateStory(){
    }
    
 
-  
+   if (!token) {
+    return <Navigate replace to="/login" />;
+}
+else
 
     return (
         <div className="cont">
@@ -75,7 +74,7 @@ export default function CreateStory(){
             <input style={{fontSize:"17px"}}  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
             <div className="image">
                <input style={{marginLeft:"50px"}} type="file" placeholder="upload image" onChange={(e)=>{setImage(e.target.files[0])}}/><br/>
-               <button onClick={uploadImage}>Upload image</button>
+               
             </div>
            
             <button className="btn" onClick={handalSubmit}>Post</button>

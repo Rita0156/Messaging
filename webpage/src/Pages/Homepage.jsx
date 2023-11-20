@@ -8,9 +8,7 @@ import ItemPage from "../component/Item"
  const Homepage=()=>{
   const [posts,setPos]=useState([])
   const token=localStorage.getItem("app_token")
- if(token==null){
-    <Navigate to="/login" replace={true} />
- }
+ 
   const data=()=>{
     fetch("http://localhost:7000/story",{
         method:"GET",
@@ -33,7 +31,12 @@ useEffect(()=>{
 if(token==null){
 
 }
-    return(
+
+        if (!token) {
+            return <Navigate replace to="/login" />;
+        }
+        else
+        return(
         <div>
             <h1>Home page</h1>
            <div className="navbar">  

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { Navigate } from 'react-router-dom'
 import "./signup.css"
 //import axios from "axios"
  const Signup=()=>{
     //const navigate = useNavigate()
+    const navigate=useNavigate()
     const [email,setEmail]=useState("")
     const [pass,setPass]=useState("")
     const [name,setName]=useState("")
@@ -34,17 +35,16 @@ import "./signup.css"
            })
            .then((res)=>{
                console.log(res)
-               if(res){
-                <Navigate to="/login" replace={true} /> 
-               }
-               alert("Account Created Successfully")
+               
+               
                
            })
            .catch((err)=>{
+            alert("Account is already present")
             console.log(err)
            })
-           
-         
+           alert("Account Created Successfully") 
+         navigate("/login")
            
         
     }

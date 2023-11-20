@@ -1,12 +1,13 @@
 //import { application, json } from "express"
 import React, { useState } from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { Navigate } from 'react-router-dom'
 import "./login.css"
  const LoginFun=()=>{
      const [email,setEmail]=useState("")
      const [pass,setPass]=useState("")
      //const navigate = useNavigate()
+     const navigate=useNavigate()
      const [isAuth,setAuth]=useState(false)
      const handalSubmit=()=>{
         //e.preventDefault()
@@ -34,7 +35,7 @@ import "./login.css"
                 }
                 alert("Login Successfull")
             })
-          
+          navigate("/")
 
             //navigate('/login', { replace: true });
          
