@@ -8,18 +8,23 @@ import ItemPage from "../component/Item"
  const Homepage=()=>{
   const [posts,setPos]=useState([])
   const token=localStorage.getItem("app_token")
- 
+   const handaiOut=()=>{
+    token=null
+    localStorage.setItem("app_token",token)
+   }
   const data=()=>{
+    console.log("fetching req")
     fetch("http://localhost:7000/story",{
         method:"GET",
-        headers: { "Authorization": `Bearer ${token}`}
+        headers: { "Authorization":`Bearer ${token}`}
     }
     )
     .then((req)=>{
+        console.log(req)
         return req.json()
     })
     .then((res)=>{
-        console.log(res)
+        console.log(res,"res")
         setPos(res)
     })
 
@@ -28,9 +33,7 @@ import ItemPage from "../component/Item"
 useEffect(()=>{
   data()
 },[])
-if(token==null){
 
-}
 
         if (!token) {
             return <Navigate replace to="/login" />;
@@ -44,12 +47,12 @@ if(token==null){
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
+            <Link onClick={handaiOut} style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
            </div>
       
            <div>
-           {posts.map((item)=>
+           {posts.length>0 && posts.map((item)=>
                  <ItemPage user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
              )}
            </div>

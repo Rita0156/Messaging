@@ -1,12 +1,12 @@
 
-
+import "./item.css"
 export default function ItemPage({user,massage,time,avatar}){
          return (
-            <div>
-                <h2>{user} :name</h2>
-                <h3>{massage}:message</h3>
+            <div className="item">
+                <h2>Post Name :{user}</h2>
+                <h3>Message :{massage}</h3>
                 <img src={avatar}/>
-                <p>{time } time</p>
+                <p>Time :{time }</p>
             </div>
          )
 }

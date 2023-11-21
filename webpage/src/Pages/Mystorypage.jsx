@@ -8,7 +8,10 @@ import "./mystory.css"
  const Mystory=()=>{
     const token=localStorage.getItem("app_token")
     const [pos,setPos]=useState([])
-    
+    const handalOut=()=>{
+        token=null
+        localStorage.setItem("app_token",token)
+       }
     const data=()=>{
         fetch("http://localhost:7000/mystory",{
             method:"GET",
@@ -42,7 +45,7 @@ import "./mystory.css"
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/create">Create</Link>
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
+            <Link onClick={handalOut} style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
 
       

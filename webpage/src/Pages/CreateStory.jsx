@@ -16,8 +16,8 @@ export default function CreateStory(){
     event.preventDefault()
     console.log("start on submit")
     const formdata=new FormData()
-    formdata.append("file",image)
        
+    //console.log(formdata,"formdata");
         
     const payload={
         name,
@@ -26,15 +26,13 @@ export default function CreateStory(){
         time,
         image
     }
+    
+    //formdata.append("file",payload)
     console.log(payload,"payload")
          fetch("http://localhost:7000/upload",{
             method:"POST",
-            headers:{
-                
-                //"content-type":"application/json",
-                "authorazation":"bearer"+" "+ token
-            },
-            body:JSON.stringify(formdata)
+            headers: { "Authorization":`Bearer ${token}`},
+            body:JSON.stringify(payload)
 
           })
           .then((req)=>{return req.json()})
@@ -65,7 +63,7 @@ else
       
            </div>
             
-            <form style={{border:"2px solid white",width:"30%",margin:"auto",padding:"30px",color:"white"}}  action="/stats" enctype="multipart/form-data" method="post">
+            <form style={{border:"2px solid white",width:"30%",margin:"auto",padding:"30px",color:"white",marginBottom:"20px"}}  action="/stats" enctype="multipart/form-data" method="post">
             <div className="inp">
             <h2 >Create Story</h2>
              
@@ -80,7 +78,7 @@ else
             <button className="btn" onClick={handalSubmit}>Post</button>
             </div>
            </form>
-           <Link to="/mystory">Go Back</Link>
+           <Link style={{color:"white"}} to="/mystory">Go Back</Link>
            
         </div>
     )
