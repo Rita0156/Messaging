@@ -63,16 +63,14 @@ import "./signup.css"
       
            </div>
            <div className="sign">
-               <div className="right">
-                   <img src="https://us.123rf.com/450wm/djvstock/djvstock2006/djvstock200614491/148633027-couple-connected-online-by-different-electronic-means-vector-illustration-design.jpg?ver=6"/>
-               </div>
+               
               <div className="left" style={{backgroundColor:"white"}}>
                    <h1>Register Form</h1>
                    <div className="inside"  >
                    <h1>Signup</h1>
                    <input style={{fontSize:"17px",backgroundColor:"white"}} type="text" placeholder="enter your name" onChange={(e)=>setName(e.target.value)}/><br/>
-                   <input style={{fontSize:"17px",backgroundColor:"white"}}  type="text" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
-                   <input style={{fontSize:"17px",backgroundColor:"white"}}  type="text" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
+                   <input style={{fontSize:"17px",backgroundColor:"white"}}  type="email" placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
+                   <input style={{fontSize:"17px",backgroundColor:"white"}}  type="password" onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
         
                    <button onClick={handalSubmit} type="submit" style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"2px solid white",borderRadius:"8px",cursor:"pointer"}} >Sing up</button>
                    <p>If you have account then</p>
@@ -81,7 +79,9 @@ import "./signup.css"
                    
               </div>
 
-               
+              <div className="right">
+                   <img src="https://us.123rf.com/450wm/djvstock/djvstock2006/djvstock200614491/148633027-couple-connected-online-by-different-electronic-means-vector-illustration-design.jpg?ver=6" alt="mob"/>
+               </div>
 
 
            </div>

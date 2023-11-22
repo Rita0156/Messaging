@@ -2,19 +2,36 @@ const multer  = require('multer')
 //const upload = multer({ dest: './Pictures/Rita' })
 const Router=require("express")
 const {PostModel}=require("../Models/Posts")
+//const {Auth}
 const StoryControler=Router()
 const path=require("path")
+const fs=require("fs")
 
 
 
 StoryControler.get("/story",async(req,res)=>{
+    console.log("my story")
       const data=await PostModel.find()
+      console.log(data)
       res.json(data)
 })
 
 StoryControler.get("/mystory",async(req,res)=>{
-    const mystory=await PostModel.find({_id:req.body.customerId})
+    const mystory=await PostModel.find({customerId:req.body.customerId})
+    console.log(mystory)
     res.json(mystory)
+})
+StoryControler.post("/create",async(req,res)=>{
+    const {customerId}=req.body
+    console.log(req.body,"create body")
+    const create=new PostModel({
+     name:req.body.name,
+     massage:req.body.massage,
+     time:req.body.time,
+     customerId
+    })
+    await create.save()
+    res.json("Post Created")
 })
 
 const storage=multer.diskStorage({
@@ -31,38 +48,47 @@ const upload = multer({
   storage:storage
 })
 //console.log(storage,"storage")
-//console.log(upload,"upload")
+//console.log(upload,"upload");
 
 
 StoryControler.get('/', (req, res) => {
   PostModel.find({})
   .then((data, err)=>{
       if(err){
-          console.log(err);
+          console.log(err,"i am getting error");
       }
       res.render('imagepage',{items: data})
   })
 });
 
 
-StoryControler.post('/upload', upload.single('image'), (req, res, next) => {
- 
-  var obj = {
-      name: req.body.name,
-      message: req.body.message,
-      time:req.body.time,
+StoryControler.post('/upload', upload.single('image'),async (req, res, next) => {
+    console.log("inside image uploading")
+    //const {customerid}=req.params
+    
+    //const update=await PostModel.find({customerId:req.body.customerId})
+    
+    const {name,massage,time,customerId}=req.body;
+    console.log("req body",req.body)
+     console.log("image uploading");
+     var obj = {
+      name,
+      massage,
+      time,
+      customerId,
       img: {
           data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
           contentType: 'image/png'
       }
-  }
-  PostModel.create(obj)
-  .then ((err, item) => {
+    }
+  console.log("obj",obj)
+  const result=new PostModel(obj)
+  .then (async(err, item) => {
       if (err) {
-          console.log(err);
+          console.log(err)
       }
       else {
-          // item.save();
+         await  result.save();
           res.redirect('/');
       }
   });

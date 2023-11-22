@@ -42,7 +42,7 @@
 }
 
 /*-----Tablet View-----*/
-@media screen and (min-width:701px) and (max-width:1500px) {
+/* @media screen and (min-width:701px) and (max-width:1500px) {
     .sign{
         width: 100%;
          display: flex;
@@ -75,7 +75,7 @@
 }
 
 /*-----Mobile View-----*/
-@media screen and (min-width:200px) and (max-width:700px) {
+/*@media screen and (min-width:200px) and (max-width:700px) {
     .sign{
         width: 100%;
         display: flex;
@@ -113,4 +113,4 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         margin-bottom: 20px;
     }
-}
+} */

@@ -1,5 +1,5 @@
 
-const { Timestamp } = require("mongodb")
+//const { Timestamp } = require("mongodb")
 const mongoose=require("mongoose")
 
 const postsSchema=new mongoose.Schema({
@@ -7,16 +7,16 @@ const postsSchema=new mongoose.Schema({
     massage:String,
 
     time:String,
-    customerId:String,
-    img:
-    {
-        data: Buffer,
-        contentType: String
-    }
+    customerId:String
+    // img:
+    // {
+    //     data: Buffer,
+    //     contentType: String
+    // }
     
 });
 
-const PostModel=mongoose.model("reel",postsSchema)
+const PostModel=mongoose.model("reel",postsSchema);
 
 
 module.exports={PostModel};

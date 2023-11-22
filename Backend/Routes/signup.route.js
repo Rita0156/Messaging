@@ -34,6 +34,9 @@ SignupControler.post("/signup",async(req,res)=>{
             }
         })
      }
+     else{
+        res.json("user is already present")
+     }
     // res.json("Signup Successfull")
     
 })
@@ -52,7 +55,7 @@ SignupControler.post("/login",async(req,res)=>{
     bcrypt.compare(pass, hash, function(err, result) {
         // result == true
         //console.log(hash,"   ",password)
-        //console.log(hash," ",pass)
+        //console.log(hash," ",pass)'
         if(err){
             //console.log("in err condi",err)
             res.json("error getting")

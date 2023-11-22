@@ -12,24 +12,22 @@ export default function CreateStory(){
     //const []=useState("")
    
   
-   const handalSubmit=(event)=>{
-    event.preventDefault()
-    console.log("start on submit")
-    const formdata=new FormData()
+   const handalSubmit=()=>{
+   // event.preventDefault()
+    
        
     //console.log(formdata,"formdata");
         
-    const payload={
+    let payload={
         name,
         massage,
-        
         time,
-        image
+        
     }
     
     //formdata.append("file",payload)
     console.log(payload,"payload")
-         fetch("http://localhost:7000/upload",{
+         fetch("http://localhost:7000/create",{
             method:"POST",
             headers: { "Authorization":`Bearer ${token}`},
             body:JSON.stringify(payload)
@@ -63,7 +61,7 @@ else
       
            </div>
             
-            <form style={{border:"2px solid white",width:"30%",margin:"auto",padding:"30px",color:"white",marginBottom:"20px"}}  action="/stats" enctype="multipart/form-data" method="post">
+            <div style={{border:"2px solid white",width:"30%",margin:"auto",padding:"30px",color:"white",marginBottom:"20px"}}  >
             <div className="inp">
             <h2 >Create Story</h2>
              
@@ -77,7 +75,7 @@ else
            
             <button className="btn" onClick={handalSubmit}>Post</button>
             </div>
-           </form>
+           </div>
            <Link style={{color:"white"}} to="/mystory">Go Back</Link>
            
         </div>

@@ -61,8 +61,8 @@ import "./login.css"
             <h1>Login Form</h1>
             <div className="inside"  >
               <h2>Login</h2>
-            <input  type="text"  placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
-            <input  type="text"  onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
+            <input  type="email"  placeholder="Enter email"  onChange={(e)=>{setEmail(e.target.value)}} /><br/>
+            <input  type="password"  onChange={(e)=>{setPass(e.target.value)}} placeholder="Enter password"/><br/>
             <button onClick={handalSubmit}  style={{color:"white",backgroundColor:"orange",fontSize:"18px", fontWeight:"bold",padding:"10px", marginTop:"20px",border:"2px solid white",borderRadius:"8px",cursor:"pointer"}} type="submit">Login</button>
             <p>If you don't have create your account here </p>
             <Link style={{color:"white"}} to="/register">Signup here</Link>

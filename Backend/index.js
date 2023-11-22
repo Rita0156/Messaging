@@ -15,14 +15,14 @@ const app=express()
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+app.use(cors());
 app.use(express.json())
 
 
 app.get("/",(req,res)=>{
     return res.send("api is working currect ");
 })
-app.use(cors());
+
 app.use("/",SignupControler);
 
 
@@ -39,7 +39,7 @@ app.listen(PORT,async()=>{
    }
    catch(arr){
       console.log("failed to connect db")
-      console.log(err)
+      console.log(err);
    }
    console.log("Running port is---",PORT)
 })
