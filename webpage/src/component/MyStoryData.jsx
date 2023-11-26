@@ -4,7 +4,7 @@ export default function MysroryitemPage({user,massage,time,avatar,handalEdit}){
        <div>
            <h2>{user}</h2>
            <h3>{massage}</h3>
-           <img src={avatar}/>
+           <img style={{width:"80%"}} src={avatar}/>
            <p>{time}</p>
            
            <button onClick={handalEdit}>Edit</button>

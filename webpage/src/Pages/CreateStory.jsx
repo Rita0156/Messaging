@@ -9,7 +9,11 @@ export default function CreateStory(){
     const [massage,setMassage]=useState("")
     const [image,setImage]=useState("")
     const [time,setTime]=useState("")
+
+    const currDate = new Date()
+    //const currTime = new Date().toLocaleTimeString;
     //const []=useState("")
+    const newTime=currDate
    const imagePreview=(e)=>{
          console.log(e)
 
@@ -23,7 +27,7 @@ export default function CreateStory(){
             console.log("error",err);
          }
    }
-   const uploadImage=()=>{
+   const handalSubmit=()=>{
       fetch('http://localhost:7000/image_upload',{
         method:"POST",
         crossDomain:true,
@@ -33,32 +37,44 @@ export default function CreateStory(){
             Accept:"application/json",
             "Access-Control-Allow-Origin":"*",
             },
-        body:JSON.stringify({base64:image})
+        body:JSON.stringify({name,massage,base64:image,time:newTime})
       })
       .then((req)=>{return req.json()})
-      .then((res)=>{console.log(res);})
+      .then((res)=>{
+        console.log(res);
+        if(res.Status=="ok"){
+            alert("Post Created Successfully")
+        }else{
+            alert("something went wrong please try again")
+        }
+       })
       .catch((err)=>{console.log(err);})
    }
   
-    const handalSubmit=()=>{}
+    // const handalSubmit=()=>{
+    //     let payload={
+                    
+    //                 image,
+    //                  massage,
+    //                  time,
+    //         }
+    //         console.log(payload,"payload")
+
+    //     fetch("http://localhost:7000/create",{
+    //         method:"POST",
+    //          headers: { "Authorization":`Bearer ${token}`},
+    //          body:JSON.stringify(payload)
+
+    //        })
+    //        .then((req)=>{return req.json()})
+    //        .then((res)=>console.log(res))
+    //        .catch(err=>console.log(err))
+    // }
     
-//     let payload={
-//         name,
-//         massage,
-//         time,
-       
-//     }
+//     
     
 //     console.log(payload,"payload")
-//          fetch("http://localhost:7000/update",{
-//             method:"POST",
-//             headers: { "Authorization":`Bearer ${token}`},
-//             body:JSON.stringify(payload)
-
-//           })
-//           .then((req)=>{return req.json()})
-//           .then((res)=>console.log(res))
-//         .catch(err=>console.log(err))
+//          
 
 //         alert("Post Created Successfully")
         
@@ -88,12 +104,12 @@ else
             <div className="inp">
             <h2 >Create Story</h2>
              
-            <input style={{fontSize:"17px"}} type="text" placeholder="enter post name" onChange={(e)=>{setName(e.target.value)}} /> <br/>
+            <input style={{fontSize:"17px"}} type="text" placeholder="enter post name" onChange={(e)=>{setName(e.target.value)}} /> <br/> 
             <input style={{fontSize:"17px"}} type="text"  placeholder="enter message" onChange={(e)=>{setMassage(e.target.value)}} /><br/>
-            <input style={{fontSize:"17px"}}  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
+            
             <div className="image">
                <input style={{marginLeft:"50px"}} accept="image/*" type="file"  onChange={imagePreview}/><br/>
-               <button onClick={uploadImage}>Upload</button>
+               {/* <button onClick={uploadImage}>Upload</button>*/}
                <div>
                    {image==""?"":<img src={image} style={{width:"60px",height:"60px"}} />}
                </div>

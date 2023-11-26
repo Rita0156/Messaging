@@ -53,7 +53,7 @@ useEffect(()=>{
       
            <div className="home">
            {posts.length>0 && posts.map((item)=>
-                 <ItemPage key={item.id} user={item.name} massage={item.massage} avatar={item.image} time={item.time}/>
+                 <ItemPage key={item.id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time}/>
              )}
            </div>
      

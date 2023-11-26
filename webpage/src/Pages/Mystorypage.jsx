@@ -55,8 +55,8 @@ import "./mystory.css"
  
                </div>
                <div>
-               {pos.map((item)=>(
-                  <MysroryitemPage user={item.name} avatar={item.image} massage={item.massage} time={item.time} handalEdit={handalEdit}/>
+               {pos.length==0?<h1>You have not created post yet</h1>:pos.map((item)=>(
+                  <MysroryitemPage user={item.name} avatar={item.Image} massage={item.massage} time={item.time} handalEdit={handalEdit}/>
                  ))}
                </div>
         </div>
