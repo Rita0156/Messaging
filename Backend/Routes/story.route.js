@@ -23,32 +23,51 @@ StoryControler.get("/mystory",async(req,res)=>{
     console.log(mystory)
     res.json(mystory)
 })
-StoryControler.post("/create",async(req,res)=>{
-    const {customerId}=req.body
-    console.log(req.body,"create body")
-    const create=new PostModel({
-     name:req.body.name,
-     massage:req.body.massage,
-     time:req.body.time,
-     customerId
-    })
-    await create.save()
-    res.json("Post Created")
-})
+
 
 StoryControler.post("/image_upload",async(req,res)=>{
-    const {base64,customerId}=req.body;
+    const {base64,customerId,name,massage,time}=req.body;
+    console.log(req.body,"img uploading")
     try{
-         const img = new ImagetModel({image:base64,customerId})
+         const img = new PostModel({
+            name,
+            massage,
+            Image:base64,
+            time,
+            customerId})
          await img.save()
-         res.json({Status:'ok'})
+         res.json({Status:'ok',message:"post created"})
 
     }
-    catch(err){
-        console.log(err)
-        res.json({Status:'error',err})
+    catch{
+        console.log("error get")
+        res.json({Status:'error'})
     }
 })
+
+StoryControler.post("/create",async(req,res)=>{
+    console.log(req.body,"inside create")
+    const {customerId,name,base64,image,massage,time}=req.body;
+    console.log(req.body,"create req body")
+    const FinalPost=new PostModel({
+        name,
+        massage,
+        Image:base64,
+        time,
+        customerId
+     })
+     console.log(FinalPost,"final post")
+    try{
+         
+
+         await FinalPost.save()
+         res.json("Post created successfully")
+    }
+    catch{
+         res.json("something went wrong")
+    }
+})
+
 
 // const storage=multer.diskStorage({
 //     destination:(req,file,cb)=>{
@@ -80,7 +99,7 @@ StoryControler.post("/image_upload",async(req,res)=>{
 
 // StoryControler.post('/upload', upload.single('image'),async (req, res, next) => {
 //     console.log("inside image uploading")
-//     //const {customerid}=req.params
+//     //const {customerid}=req.params;
     
 //     //const update=await PostModel.find({customerId:req.body.customerId})
     

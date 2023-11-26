@@ -5,7 +5,7 @@ const mongoose=require("mongoose")
 const postsSchema=new mongoose.Schema({
     name:String,
     massage:String,
-
+    Image:String,
     time:String,
     customerId:String
     // img:

@@ -42,9 +42,9 @@ app.listen(PORT,async()=>{
       await connectDB;
       console.log("connected to db")
    }
-   catch(arr){
-      console.log("failed to connect db")
+   catch(err){
+      console.log("failed to connect db");
       console.log(err);
    }
-   console.log("Running port is---",PORT)
+   console.log("Running port is---",PORT);
 })

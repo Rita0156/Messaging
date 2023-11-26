@@ -68,7 +68,7 @@ SignupControler.post("/login",async(req,res)=>{
               //console.log(token,"token")
               res.json({message:"Login successfull",token:token})
         }else{
-            res.json("Invalid credential")
+            res.json("Invalid credential");
         }
         
     });
