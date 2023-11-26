@@ -3,9 +3,11 @@ const multer  = require('multer')
 const Router=require("express")
 const {PostModel}=require("../Models/Posts")
 //const {Auth}
+const {ImagetModel}=require("../Models/Image")
 const StoryControler=Router()
 const path=require("path")
 const fs=require("fs")
+const { ok } = require('assert')
 
 
 
@@ -34,65 +36,79 @@ StoryControler.post("/create",async(req,res)=>{
     res.json("Post Created")
 })
 
-const storage=multer.diskStorage({
-    destination:(req,file,cb)=>{
-      cb(null,"pictures")
-    },
-    filename:(req,file,cb)=>{
-       cb(null,file.fieldname+"_"+Date.now())
+StoryControler.post("/image_upload",async(req,res)=>{
+    const {base64,customerId}=req.body;
+    try{
+         const img = new ImagetModel({image:base64,customerId})
+         await img.save()
+         res.json({Status:'ok'})
+
     }
-    
+    catch(err){
+        console.log(err)
+        res.json({Status:'error',err})
+    }
 })
 
-const upload = multer({
-  storage:storage
-})
+// const storage=multer.diskStorage({
+//     destination:(req,file,cb)=>{
+//       cb(null,"pictures")
+//     },
+//     filename:(req,file,cb)=>{
+//        cb(null,file.fieldname+"_"+Date.now())
+//     }
+    
+// })
+
+// const upload = multer({
+//   storage:storage
+// })
 //console.log(storage,"storage")
 //console.log(upload,"upload");
 
 
-StoryControler.get('/', (req, res) => {
-  PostModel.find({})
-  .then((data, err)=>{
-      if(err){
-          console.log(err,"i am getting error");
-      }
-      res.render('imagepage',{items: data})
-  })
-});
+// StoryControler.get('/', (req, res) => {
+//   PostModel.find({})
+//   .then((data, err)=>{
+//       if(err){
+//           console.log(err,"i am getting error");
+//       }
+//       res.render('imagepage',{items: data})
+//   })
+// });
 
 
-StoryControler.post('/upload', upload.single('image'),async (req, res, next) => {
-    console.log("inside image uploading")
-    //const {customerid}=req.params
+// StoryControler.post('/upload', upload.single('image'),async (req, res, next) => {
+//     console.log("inside image uploading")
+//     //const {customerid}=req.params
     
-    //const update=await PostModel.find({customerId:req.body.customerId})
+//     //const update=await PostModel.find({customerId:req.body.customerId})
     
-    const {name,massage,time,customerId}=req.body;
-    console.log("req body",req.body)
-     console.log("image uploading");
-     var obj = {
-      name,
-      massage,
-      time,
-      customerId,
-      img: {
-          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-          contentType: 'image/png'
-      }
-    }
-  console.log("obj",obj)
-  const result=new PostModel(obj)
-  .then (async(err, item) => {
-      if (err) {
-          console.log(err)
-      }
-      else {
-         await  result.save();
-          res.redirect('/');
-      }
-  });
-});
+//     const {name,massage,time,customerId}=req.body;
+//     console.log("req body",req.body)
+//      console.log("image uploading");
+//      var obj = {
+//       name,
+//       massage,
+//       time,
+//       customerId,
+//       img: {
+//           data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+//           contentType: 'image/png'
+//       }
+//     }
+//   console.log("obj",obj)
+//   const result=new PostModel(obj)
+//   .then (async(err, item) => {
+//       if (err) {
+//           console.log(err)
+//       }
+//       else {
+//          await  result.save();
+//           res.redirect('/');
+//       }
+//   });
+// });
 
 
 StoryControler.patch("/update/noteid",async(req,res)=>{
