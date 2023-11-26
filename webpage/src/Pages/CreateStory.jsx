@@ -10,41 +10,64 @@ export default function CreateStory(){
     const [image,setImage]=useState("")
     const [time,setTime]=useState("")
     //const []=useState("")
-   
-  
-   const handalSubmit=()=>{
-   // event.preventDefault()
-    
-       
-    //console.log(formdata,"formdata");
-        
-    let payload={
-        name,
-        massage,
-        time,
-        
-    }
-    
-    //formdata.append("file",payload)
-    console.log(payload,"payload")
-         fetch("http://localhost:7000/create",{
-            method:"POST",
-            headers: { "Authorization":`Bearer ${token}`},
-            body:JSON.stringify(payload)
+   const imagePreview=(e)=>{
+         console.log(e)
 
-          })
-          .then((req)=>{return req.json()})
-          .then((res)=>console.log(res))
-        .catch(err=>console.log(err))
-
-        alert("Post Created Successfully")
-        
-
-        
+         var render=new FileReader()
+         render.readAsDataURL(e.target.files[0])
+         render.onload=()=>{
+             console.log(render.result)
+             setImage(render.result)
+         }
+         render.onerror=err=>{
+            console.log("error",err);
+         }
    }
+   const uploadImage=()=>{
+      fetch('http://localhost:7000/image_upload',{
+        method:"POST",
+        crossDomain:true,
+        headers:{
+            "Authorization":`Bearer ${token}`,
+            "Content-Type":"application/json",
+            Accept:"application/json",
+            "Access-Control-Allow-Origin":"*",
+            },
+        body:JSON.stringify({base64:image})
+      })
+      .then((req)=>{return req.json()})
+      .then((res)=>{console.log(res);})
+      .catch((err)=>{console.log(err);})
+   }
+  
+    const handalSubmit=()=>{}
+    
+//     let payload={
+//         name,
+//         massage,
+//         time,
+       
+//     }
+    
+//     console.log(payload,"payload")
+//          fetch("http://localhost:7000/update",{
+//             method:"POST",
+//             headers: { "Authorization":`Bearer ${token}`},
+//             body:JSON.stringify(payload)
+
+//           })
+//           .then((req)=>{return req.json()})
+//           .then((res)=>console.log(res))
+//         .catch(err=>console.log(err))
+
+//         alert("Post Created Successfully")
+        
+
+        
+//    }
    
 
-   if (!token) {
+if (!token) {
     return <Navigate replace to="/login" />;
 }
 else
@@ -69,8 +92,11 @@ else
             <input style={{fontSize:"17px"}} type="text"  placeholder="enter message" onChange={(e)=>{setMassage(e.target.value)}} /><br/>
             <input style={{fontSize:"17px"}}  type="date" placeholder="select time"  onChange={(e)=>{setTime(e.target.value)}} /><br/>
             <div className="image">
-               <input style={{marginLeft:"50px"}} type="file" placeholder="upload image" onChange={(e)=>{setImage(e.target.files[0])}}/><br/>
-               
+               <input style={{marginLeft:"50px"}} accept="image/*" type="file"  onChange={imagePreview}/><br/>
+               <button onClick={uploadImage}>Upload</button>
+               <div>
+                   {image==""?"":<img src={image} style={{width:"60px",height:"60px"}} />}
+               </div>
             </div>
            
             <button className="btn" onClick={handalSubmit}>Post</button>

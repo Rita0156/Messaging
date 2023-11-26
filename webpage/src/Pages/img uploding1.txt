@@ -1,0 +1,5 @@
+pick a file from local.
+
+convert image obj into base64. (it's convert into bites)
+
+PUT or POSt send the above converted obj(base64) to server

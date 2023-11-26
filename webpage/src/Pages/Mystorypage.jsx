@@ -6,7 +6,7 @@ import MysroryitemPage from "../component/MyStoryData"
 import "./mystory.css"
 
  const Mystory=()=>{
-    const token=localStorage.getItem("app_token")
+    let token=localStorage.getItem("app_token")
     const [pos,setPos]=useState([])
     const handalOut=()=>{
         token=null
@@ -37,7 +37,7 @@ import "./mystory.css"
     else
     return (
         <div>
-            <h3>My Story</h3>
+            
             
             <div className="navbar">  
             
