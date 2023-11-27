@@ -25,9 +25,7 @@ import "./mystory.css"
             setPos(data)
         })
     }
-    const handalEdit=(id)=>{
-        <Link to="/edit"></Link>
-    }
+    
     useEffect(()=>{
         data()
     },[])
@@ -56,7 +54,7 @@ import "./mystory.css"
                </div>
                <div>
                {pos.length==0?<h1>You have not created post yet</h1>:pos.map((item)=>(
-                  <MysroryitemPage user={item.name} avatar={item.Image} massage={item.massage} time={item.time} handalEdit={handalEdit}/>
+                  <MysroryitemPage user={item.name} avatar={item.Image} massage={item.massage} time={item.time} ID={item.id}/>
                  ))}
                </div>
         </div>

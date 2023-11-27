@@ -3,13 +3,13 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./edit.css"
-export default function Edit(event){
+export default function Edit(id){
    // event.preventDefault()
     const [name,setname]=useState("")
     const [massage,setMassage]=useState("")
     const [time,setTime]=useState("")
     const token=localStorage.getItem("app_token")
-    const handalUpload=(e,id)=>{
+    const handalUpload=(e)=>{
         e.preventDefault()
         const payload={
             name,
@@ -17,7 +17,7 @@ export default function Edit(event){
             time
         }
         
-            fetch(`http://localhost:7000/edit/${id}`,{
+            fetch(`http://localhost:7000/update/${id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",
