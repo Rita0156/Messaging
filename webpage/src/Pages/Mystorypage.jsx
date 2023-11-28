@@ -11,6 +11,7 @@ import "./mystory.css"
     const handalOut=()=>{
         token=null
         localStorage.setItem("app_token",token)
+        alert("Log Out")
        }
     const data=()=>{
         fetch("http://localhost:7000/mystory",{
@@ -25,17 +26,11 @@ import "./mystory.css"
             setPos(data)
         })
     }
-    const handalDelete=(id)=>{
-         fetch(`http://localhost:7000/delete/${id}`)
-         .then(()=>{})
-         .then(()=>{})
-         .catch(()=>{})
-
-         data()
-    }
+    
     
     useEffect(()=>{
         data()
+        //handalDelete()
     },[])
     if (!token) {
         return <Navigate replace to="/login" />;
@@ -60,9 +55,9 @@ import "./mystory.css"
       
  
                </div>
-               <div>
+               <div className="story">
                {pos.length==0?<h1>You have not created post yet</h1>:pos.map((item)=>(
-                  <MysroryitemPage user={item.name} avatar={item.Image} massage={item.massage} time={item.time} ID={handalDelete(item.id)}/>
+                  <MysroryitemPage user={item.name} avatar={item.Image} massage={item.massage} time={item.time} ID={(item._id)}/>
                   
                  ))}
                </div>

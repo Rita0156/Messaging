@@ -11,6 +11,7 @@ import ItemPage from "../component/Item"
    const handaiOut=()=>{
     token=null
     localStorage.setItem("app_token",token)
+    alert("Log Out")
    }
   const data=()=>{
     console.log("fetching req")
