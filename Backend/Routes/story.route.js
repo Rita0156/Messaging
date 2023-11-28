@@ -141,4 +141,15 @@ StoryControler.patch("/update/noteid",async(req,res)=>{
     }
 })
 
+StoryControler.delete("/delete/noteid",async(req,res)=>{
+    const {noteid}=req.params
+    const de=await PostModel.findOneAndDelete({_id:noteid, customerId:req.body.customerId},req.body)
+    console.log(update,"update")
+    if(de){
+        res.send("story deleted");
+    }else{
+        res.send("couldn't deleted");
+    }
+})
+
 module.exports={StoryControler}
