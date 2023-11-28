@@ -40,7 +40,7 @@ app.use("/",StoryControler)
 app.listen(PORT,async()=>{
    try{
       await connectDB;
-      console.log("connected to db")
+      console.log("connected to db");
    }
    catch(err){
       console.log("failed to connect db");
