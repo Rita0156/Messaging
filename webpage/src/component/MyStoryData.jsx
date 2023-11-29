@@ -2,11 +2,16 @@ import { Link } from "react-router-dom";
 
 export default function MysroryitemPage({user,massage,time,avatar,ID}){
     const token=localStorage.getItem("app_token")
-    const handalDelete=(id)=>{
-        fetch(`http://localhost:7000/delete/${id}`,{
+    //
+    const handalDelete=()=>{
+        const id={ID}
+        console.log(id.ID,"id")
+        const sid=id.ID
+        alert("clicked")
+        fetch(`http://localhost:7000/mystory:${sid}`,{
            method:"DELETE",
            headers:{
-               "Authorization": `Bearer ${token}`
+               "Authorization":`Bearer ${token}`
            }
         })
         .then((req)=>{return req.json()})
@@ -22,7 +27,7 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
            <img style={{width:"80%"}} src={avatar}/>
            <p style={{marginBottom:"20px"}}>{time}</p>
            
-           <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px"}} onClick={handalDelete({ID})}>Delete</button>
+           <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px"}} onClick={handalDelete}>Delete</button>
        </div>
     )
 }

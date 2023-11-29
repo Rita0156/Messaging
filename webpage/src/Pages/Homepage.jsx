@@ -13,9 +13,9 @@ import ItemPage from "../component/Item"
     localStorage.setItem("app_token",token)
     alert("Log Out")
    }
-  const data=()=>{
+  const data=async()=>{
     console.log("fetching req")
-    fetch("http://localhost:7000/story",{
+   await fetch("http://localhost:7000/story",{
         method:"GET",
         headers: { "Authorization":`Bearer ${token}`}
     }
@@ -54,7 +54,7 @@ useEffect(()=>{
       
            <div className="home">
            {posts.length>0 && posts.map((item)=>
-                 <ItemPage key={item.id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time}/>
+                 <ItemPage key={item._id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time}/>
              )}
            </div>
      

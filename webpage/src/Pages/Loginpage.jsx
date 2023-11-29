@@ -32,15 +32,16 @@ import "./login.css"
                 if(res.token){
                     localStorage.setItem("app_token",res.token)
                     setAuth(true)
+                    alert("Login Successfull")
                 }
-                alert("Login Successfull")
+                
             })
           navigate("/")
 
             //navigate('/login', { replace: true });
          
      }
-     if(isAuth){
+     if(isAuth==true){
         //<navigate path=""/>
         <Navigate to="/" replace={true}/>
      }

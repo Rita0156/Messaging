@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import {Link, useNavigate} from "react-router-dom"
-import { Navigate } from 'react-router-dom'
+//import { Navigate } from 'react-router-dom'
 import "./signup.css"
 //import axios from "axios"
  const Signup=()=>{
@@ -35,15 +35,23 @@ import "./signup.css"
            })
            .then((res)=>{
                console.log(res)
+               if(res==="user is already present"){
+                alert("User is already present")
+               }
+               else if(res==="signup successfull"){
+                alert("Account Created Successfully") 
+               }else{
+                alert("Something went wrong please try again")
+               }
                
                
                
            })
            .catch((err)=>{
-            alert("Account is already present")
+            
             console.log(err)
            })
-           alert("Account Created Successfully") 
+           
          navigate("/login")
            
         

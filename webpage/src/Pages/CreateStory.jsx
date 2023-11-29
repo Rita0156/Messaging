@@ -8,7 +8,7 @@ export default function CreateStory(){
     const [name,setName]=useState("")
     const [massage,setMassage]=useState("")
     const [image,setImage]=useState("")
-    const [time,setTime]=useState("")
+    //const [time,setTime]=useState("")
 
     const currDate = new Date()
     //const currTime = new Date().toLocaleTimeString;
@@ -94,8 +94,7 @@ else
             
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/login">Login</Link>
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/register">Signup</Link>
+            
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
            </div>
