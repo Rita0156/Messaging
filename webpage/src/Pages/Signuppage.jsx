@@ -22,7 +22,7 @@ import "./signup.css"
                //customerId
            }
            //fetch("")
-           fetch("https://mini-app-h1b8.onrender.com//signup",{
+           fetch("https://mini-app-h1b8.onrender.com/signup",{
                method:"POST",
                headers: {
                    "Content-Type": "application/json",
@@ -40,8 +40,7 @@ import "./signup.css"
                }
                else if(res==="signup successfull"){
                 alert("Account Created Successfully") 
-               }else{
-                alert("Something went wrong please try again")
+                navigate("/login")
                }
                
                
@@ -52,7 +51,7 @@ import "./signup.css"
             console.log(err)
            })
            
-         navigate("/login")
+        
            
         
     }

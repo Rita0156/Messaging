@@ -14,7 +14,7 @@ const { ok } = require('assert')
 StoryControler.get("/story",async(req,res)=>{
     console.log("my story")
       const data=await PostModel.find()
-      console.log(data)
+      console.log(data);
       res.json(data)
 })
 

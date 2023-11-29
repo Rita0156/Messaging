@@ -35,9 +35,9 @@ SignupControler.post("/signup",async(req,res)=>{
         })
      }
      else{
-        res.json("user is already present")
-     }
-    // res.json("Signup Successfull")
+         res.json("user is already present")
+      }
+     res.json("Signup Successfull")
     
 })
 SignupControler.post("/login",async(req,res)=>{
