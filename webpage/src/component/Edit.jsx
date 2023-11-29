@@ -17,7 +17,7 @@ export default function Edit(id){
             time
         }
         
-            fetch(`https://mini-insta-app.onrender.com/update:${id}`,{
+            fetch(`https://mini-app-h1b8.onrender.com//update:${id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",

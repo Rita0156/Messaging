@@ -25,7 +25,7 @@ app.use(express.urlencoded({limit: '50mb'}));
 
 
 app.get("/",(req,res)=>{
-    return res.send("api is working currect ");
+    return res.send("api is working currect properly ");
 })
 
 app.use("/",SignupControler);

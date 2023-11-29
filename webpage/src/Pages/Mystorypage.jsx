@@ -14,7 +14,7 @@ import "./mystory.css"
         alert("Log Out")
        }
     const data=()=>{
-        fetch("https://mini-insta-app.onrender.com/mystory",{
+        fetch("https://mini-app-h1b8.onrender.com//mystory",{
             method:"GET",
             headers: { "Authorization": `Bearer ${token}`}
         })

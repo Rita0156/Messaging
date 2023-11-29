@@ -22,7 +22,7 @@ import "./signup.css"
                //customerId
            }
            //fetch("")
-           fetch("https://mini-insta-app.onrender.com/signup",{
+           fetch("https://mini-app-h1b8.onrender.com//signup",{
                method:"POST",
                headers: {
                    "Content-Type": "application/json",
