@@ -44,7 +44,7 @@ SignupControler.post("/login",async(req,res)=>{
     const {email,pass}=req.body;
     //console.log(req.body,"req body")
     const customer=await SignupModel.findOne({email})
-   // console.log(customer,"customer")
+    console.log(customer,"customer")
     //console.log(customer.password,"customer")
     const hash=customer.password;
     //console.log(hash,"has",pass,"pass")

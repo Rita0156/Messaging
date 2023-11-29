@@ -1,18 +1,14 @@
 
-//const { Timestamp } = require("mongodb")
+//const { Timestamp } = require("mongodb");
 const mongoose=require("mongoose")
 
 const postsSchema=new mongoose.Schema({
-    name:String,
-    massage:String,
-    Image:String,
-    time:String,
-    customerId:String
-    // img:
-    // {
-    //     data: Buffer,
-    //     contentType: String
-    // }
+    name:{type:String,require:true},
+    massage:{type:String,require:true},
+    Image:{type:String,require:true},
+    time:{type:String,require:true},
+    customerId:{type:String,require:true},
+    _id:String
     
 });
 

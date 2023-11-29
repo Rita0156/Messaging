@@ -19,7 +19,7 @@ const authentication = (req, res, next) => {
         }
 
         req.body.customerId=decoded.customerId;
-        // res.json({message:"aa ja bata"})
+        // res.json({message:"aa ja bata"});
         next();
       });
 }
