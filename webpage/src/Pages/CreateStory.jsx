@@ -28,7 +28,7 @@ export default function CreateStory(){
          }
    }
    const handalSubmit=()=>{
-      fetch('http://localhost:7000/image_upload',{
+      fetch('https://mini-insta-app.onrender.com/image_upload',{
         method:"POST",
         crossDomain:true,
         headers:{

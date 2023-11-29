@@ -7,8 +7,11 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
         const id={ID}
         console.log(id.ID,"id")
         const sid=id.ID
+        
+
+
         alert("clicked")
-        fetch(`http://localhost:7000/mystory:${sid}`,{
+        fetch(`https://mini-insta-app.onrender.com/mystory:${sid}`,{
            method:"DELETE",
            headers:{
                "Authorization":`Bearer ${token}`
