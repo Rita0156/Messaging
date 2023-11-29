@@ -3,20 +3,20 @@ require('dotenv').config()
 const PORT=process.env.PORT || 7500
 const {connectDB}=require("./confing/db.js")
 var bodyParser = require('body-parser');
-//const {SignupModel}=require("./Models/Signup.js")
-//const {PostModel}=require("./Models/Posts.js")
+
 const {authentication}=require("./Authentication/Auth.js")
 const cors=require("cors")
 const {SignupControler}=require("./Routes/signup.route.js")
-//const {authorization}=require("./Authentication/Auth.js")
+
 const {StoryControler}=require("./Routes/story.route.js")
 
 const app=express()
+app.use(cors());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //app.use(express.limit(100000000))
-app.use(cors());
+
 app.use(express.json({limit:"50mb"}))
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
