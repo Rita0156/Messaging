@@ -72,7 +72,7 @@ StoryControler.delete("/mystory:id",async(req,res)=>{
      const postDelete=await PostModel.findByIdAndDelete({_id:ObjectID(req.params.id),customerId:req.body.customerId})
      console.log(postDelete,"postDelete ")
      if(!req.params.id || postDelete==null){
-        console.log("not find noteid")
+        console.log("not find noteid",)
         return res.status(400).json("something went wrong")
      }
      else if(postDelete==true){
@@ -83,6 +83,7 @@ StoryControler.delete("/mystory:id",async(req,res)=>{
    catch(e){
     console.log("inside error of delete request")
       console.log(e,"error");
+      res.json({message:"Something went wrong",e})
    }
 })
 
