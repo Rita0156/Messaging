@@ -8,6 +8,37 @@ const StoryControler=Router()
 const path=require("path")
 const fs=require("fs")
 const { ok } = require('assert')
+var ObjectId = require('mongodb').ObjectId;
+
+StoryControler.delete("/mystory/:delid",async(req,res)=>{
+    console.log("inside delete")
+
+    //const {id}
+    let id=`ObjectId('${req.params.delid}')`
+    console.log(id);
+    var o_id =new ObjectId(JSON.stringify(id));
+    console.log(req.params.delid,"params id")
+   try{
+    console.log("inside try ")
+    const postDelete=await PostModel.find({_id:o_id});
+      
+     console.log(postDelete,"postDelete ")
+     if(!req.params.delid || postDelete==null || postDelete.length==0){
+        console.log("not find noteid",)
+        return res.status(400).json("something went wrong");
+     }
+     else if(postDelete==true){
+        console.log("id is find")
+        res.json({postDelete,massage:"post deleted successfully"})
+     }
+   }
+   catch(e){
+    console.log("inside error of delete request")
+      console.log(e,"error");
+      res.json({message:"Something went wrong",e})
+   }
+})
+
 
 // all story getting request
 
@@ -64,27 +95,5 @@ StoryControler.patch("/update/noteid",async(req,res)=>{
 
 // strory delete request
 
-StoryControler.delete("/mystory:id",async(req,res)=>{
-    console.log("inside delete")
-    
-   try{
-    const postDelete=await PostModel.findByIdAndDelete({_id:(req.params.id)})
-    
-     console.log(postDelete,"postDelete ")
-     if(!req.params.id || postDelete==null){
-        console.log("not find noteid",)
-        return res.status(400).json("something went wrong")
-     }
-     else if(postDelete==true){
-        console.log("id is find")
-        res.json({postDelete,massage:"post deleted successfully"})
-     }
-   }
-   catch(e){
-    console.log("inside error of delete request")
-      console.log(e,"error");
-      res.json({message:"Something went wrong",e})
-   }
-})
 
 module.exports={StoryControler};
