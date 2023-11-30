@@ -11,7 +11,7 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
 
 
         alert("clicked")
-        fetch(`https://mini-app-h1b8.onrender.com//mystory:${sid}`,{
+        fetch(`https://insta-app-4i97.onrender.com/mystory:${sid}`,{
            method:"DELETE",
            headers:{
                "Authorization":`Bearer ${token}`

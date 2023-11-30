@@ -16,7 +16,7 @@ import "./login.css"
                 pass
             }
             //fetch("")
-            fetch("https://mini-app-h1b8.onrender.com//login",{
+            fetch("https://insta-app-4i97.onrender.com/login",{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -8,12 +8,7 @@ export default function CreateStory(){
     const [name,setName]=useState("")
     const [massage,setMassage]=useState("")
     const [image,setImage]=useState("")
-    //const [time,setTime]=useState("")
-
-    const currDate = new Date()
-    //const currTime = new Date().toLocaleTimeString;
-    //const []=useState("")
-    const newTime=currDate
+    
    const imagePreview=(e)=>{
          console.log(e)
 
@@ -28,7 +23,11 @@ export default function CreateStory(){
          }
    }
    const handalSubmit=()=>{
-      fetch('https://mini-app-h1b8.onrender.com//image_upload',{
+    var today = new Date();
+    var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+ today.getFullYear()
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const newTime=date+" "+time
+      fetch('https://insta-app-4i97.onrender.com/image_upload',{
         method:"POST",
         crossDomain:true,
         headers:{
@@ -51,38 +50,6 @@ export default function CreateStory(){
       .catch((err)=>{console.log(err);})
    }
   
-    // const handalSubmit=()=>{
-    //     let payload={
-                    
-    //                 image,
-    //                  massage,
-    //                  time,
-    //         }
-    //         console.log(payload,"payload")
-
-    //     fetch("http://localhost:7000/create",{
-    //         method:"POST",
-    //          headers: { "Authorization":`Bearer ${token}`},
-    //          body:JSON.stringify(payload)
-
-    //        })
-    //        .then((req)=>{return req.json()})
-    //        .then((res)=>console.log(res))
-    //        .catch(err=>console.log(err))
-    // }
-    
-//     
-    
-//     console.log(payload,"payload")
-//          
-
-//         alert("Post Created Successfully")
-        
-
-        
-//    }
-   
-
 if (!token) {
     return <Navigate replace to="/login" />;
 }

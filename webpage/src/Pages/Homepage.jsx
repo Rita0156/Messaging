@@ -15,7 +15,7 @@ import ItemPage from "../component/Item"
    }
   const data=async()=>{
     console.log("fetching req")
-   await fetch("https://mini-app-h1b8.onrender.com//story",{
+   await fetch("https://insta-app-4i97.onrender.com/story",{
         method:"GET",
         headers: { "Authorization":`Bearer ${token}`}
     }
