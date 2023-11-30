@@ -8,8 +8,7 @@ const postsSchema=new mongoose.Schema({
     Image:{type:String,require:true},
     time:{type:String,require:true},
     customerId:{type:String,require:true},
-    _id:String
-    
+   
 });
 
 const PostModel=mongoose.model("reel",postsSchema);

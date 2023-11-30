@@ -33,12 +33,12 @@ StoryControler.post("/image_upload",async(req,res)=>{
     console.log(req.body,"img uploading")
     try{
          const img = new PostModel({
-            name,
+            name:req.body.name,
             massage,
             Image:base64,
             time,
             customerId,
-            _id:req.body._id
+            
         })
          await img.save()
          res.json({Status:'ok',message:"post created"})
@@ -69,7 +69,7 @@ StoryControler.delete("/mystory:id",async(req,res)=>{
     
    try{
     
-     const postDelete=await PostModel.findByIdAndDelete(req.params.id)
+     const postDelete=await PostModel.findByIdAndDelete({_id:req.params.id,customerId:req.body.customerId})
      console.log(postDelete,"postDelete ")
      if(!req.params.id || postDelete==null){
         console.log("not find noteid")
