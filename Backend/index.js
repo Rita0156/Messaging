@@ -17,15 +17,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.use(express.json({limit:"50mb"}))
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+app.use(express.json({limit:"70mb"}))
+app.use(bodyParser.json({limit: '70mb'}));
+app.use(express.urlencoded({limit: '70mb'}));
 
 
 
 
 app.get("/",(req,res)=>{
-    return res.send("api is working currect properly ");
+    return res.send("api is working currect properly with small insta app ");
 })
 
 app.use("/",SignupControler);
