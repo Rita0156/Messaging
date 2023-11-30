@@ -1,3 +1,4 @@
+//import { json } from "express";
 import { Link } from "react-router-dom";
 
 export default function MysroryitemPage({user,massage,time,avatar,ID}){
@@ -5,9 +6,9 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
     //
     const handalDelete=()=>{
         const id={ID}
-        console.log(id.ID,"id")
-        const sid=id.ID
-        
+        console.log(id.ID,"id",ID,"IDDDD")
+        var sid=id.ID
+         sid=(sid).toString()
 
 
         alert("clicked")
