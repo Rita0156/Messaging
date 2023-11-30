@@ -66,7 +66,7 @@ StoryControler.patch("/update/noteid",async(req,res)=>{
 
 StoryControler.delete("/mystory:id",async(req,res)=>{
     console.log("inside delete")
-    const postDelete=await PostModel.findByIdAndDelete({_id:ObjectID(req.params.id),customerId:req.body.customerId})
+    const postDelete=await PostModel.findByIdAndDelete({_id:(req.params.id),customerId:req.body.customerId})
    try{
     
     
