@@ -6,13 +6,13 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
     //
     const handalDelete=()=>{
         const id={ID}
-        console.log(id.ID,"id",ID,"IDDDD")
+        console.log("id",ID,"IDDDD")
         var sid=id.ID
          sid=(sid).toString()
 
 
         alert("clicked")
-        fetch(`https://insta-app-4i97.onrender.com/mystory:${sid}`,{
+        fetch(`http://localhost:7000/mystory/${ID}`,{
            method:"DELETE",
            headers:{
                "Authorization":`Bearer ${token}`

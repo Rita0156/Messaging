@@ -16,7 +16,7 @@ import "./login.css"
                 pass
             }
             //fetch("")
-            fetch("https://insta-app-4i97.onrender.com/login",{
+            fetch("http://localhost:7000/login",{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",

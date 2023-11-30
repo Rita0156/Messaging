@@ -27,7 +27,7 @@ export default function CreateStory(){
     var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+ today.getFullYear()
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const newTime=date+" "+time
-      fetch('https://insta-app-4i97.onrender.com/image_upload',{
+      fetch('http://localhost:7000/image_upload',{
         method:"POST",
         crossDomain:true,
         headers:{
