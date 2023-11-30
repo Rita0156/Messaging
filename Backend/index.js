@@ -12,9 +12,9 @@ const {StoryControler}=require("./Routes/story.route.js")
 
 const app=express()
 app.use(cors());
-//app.set("view engine", "ejs");
-//app.use(bodyParser.urlencoded({ extended: false }))
-//app.use(bodyParser.json())
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 //app.use(express.limit(100000000))
 
 app.use(express.json({limit:"50mb"}))
@@ -35,7 +35,7 @@ app.use("/",SignupControler);
 
 app.use(authentication);
 
-app.use("/",StoryControler)
+app.use("/",StoryControler);
 
 app.listen(PORT,async()=>{
    try{
