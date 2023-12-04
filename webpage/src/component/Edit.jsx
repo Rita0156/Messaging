@@ -3,8 +3,9 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./edit.css"
-export default function Edit(id){
+export default function Edit({props}){
    // event.preventDefault()
+    const id=props.id
     const [name,setname]=useState("")
     const [massage,setMassage]=useState("")
     const [time,setTime]=useState("")
@@ -17,7 +18,7 @@ export default function Edit(id){
             time
         }
         
-            fetch(`http://localhost:7000/update:${id}`,{
+            fetch(`http://localhost:7000/update/${id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",

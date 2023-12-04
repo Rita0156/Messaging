@@ -3,11 +3,18 @@ import axios from "axios"
 import {  Link, Navigate} from "react-router-dom"
 import "./createstory.css"
 export default function CreateStory(){
-    const token=localStorage.getItem("app_token")
+    var token=localStorage.getItem("app_token")
     
-    const [name,setName]=useState("")
+   // const [name,setName]=useState("")
+   var user_name=localStorage.getItem("user_name")
     const [massage,setMassage]=useState("")
     const [image,setImage]=useState("")
+    const handleOut=()=>{
+        token=""
+        user_name=""
+        localStorage.setItem("user_name",user_name)
+        localStorage.setItem("app_token",token)
+    }
     
    const imagePreview=(e)=>{
          console.log(e)
@@ -36,7 +43,7 @@ export default function CreateStory(){
             Accept:"application/json",
             "Access-Control-Allow-Origin":"*",
             },
-        body:JSON.stringify({name,massage,base64:image,time:newTime})
+        body:JSON.stringify({massage,base64:image,time:newTime,name:user_name})
       })
       .then((req)=>{return req.json()})
       .then((res)=>{
@@ -48,6 +55,8 @@ export default function CreateStory(){
         }
        })
       .catch((err)=>{console.log(err);})
+      setMassage("")
+      setImage("")
    }
   
 if (!token) {
@@ -62,7 +71,7 @@ else
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
+            <Link onClick={handleOut} style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
            </div>
             
@@ -70,7 +79,7 @@ else
             <div className="inp">
             <h2 >Create Story</h2>
              
-            <input style={{fontSize:"17px"}} type="text" placeholder="enter post name" onChange={(e)=>{setName(e.target.value)}} /> <br/> 
+            {/* <input style={{fontSize:"17px"}} type="text" placeholder="enter post name" onChange={(e)=>{setName(e.target.value)}} /> <br/> */}
             <input style={{fontSize:"17px"}} type="text"  placeholder="enter message" onChange={(e)=>{setMassage(e.target.value)}} /><br/>
             
             <div className="image">

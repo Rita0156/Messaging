@@ -10,33 +10,19 @@ const fs=require("fs")
 const { ok } = require('assert')
 var ObjectId = require('mongodb').ObjectId;
 
+// strory delete request
+
 StoryControler.delete("/mystory/:delid",async(req,res)=>{
     console.log("inside delete")
-
-    //const {id}
-    let id=`ObjectId('${req.params.delid}')`
-    console.log(id);
-    var o_id =new ObjectId(JSON.stringify(id));
-    console.log(req.params.delid,"params id")
-   try{
-    console.log("inside try ")
-    const postDelete=await PostModel.find({_id:o_id});
-      
-     console.log(postDelete,"postDelete ")
-     if(!req.params.delid || postDelete==null || postDelete.length==0){
-        console.log("not find noteid",)
-        return res.status(400).json("something went wrong");
-     }
-     else if(postDelete==true){
-        console.log("id is find")
-        res.json({postDelete,massage:"post deleted successfully"})
-     }
-   }
-   catch(e){
-    console.log("inside error of delete request")
-      console.log(e,"error");
-      res.json({message:"Something went wrong",e})
-   }
+    const {delid}=req.params
+    console.log(delid,"delete,id")
+    const deletePost=await PostModel.findByIdAndDelete({_id:delid, customerId:req.body.customerId})
+    console.log(deletePost,"deletePost");
+    if(deletePost){
+        res.send("story deleted");
+    }else{
+        res.send("couldn't delete");
+    }
 })
 
 
@@ -64,20 +50,20 @@ StoryControler.post("/image_upload",async(req,res)=>{
     console.log(req.body,"img uploading")
     try{
          const img = new PostModel({
-            name:req.body.name,
+            name,
             massage,
             Image:base64,
             time,
             customerId,
-            
+            postID:req._id
         })
          await img.save()
-         res.json({Status:'ok',message:"post created"})
+         res.json({Status:'ok',message:"post created"});
 
     }
     catch{
-        console.log("error get")
-        res.json({Status:'error'})
+        console.log("error get");
+        res.json({Status:'error'});
     }
 })
 
@@ -85,7 +71,7 @@ StoryControler.post("/image_upload",async(req,res)=>{
 StoryControler.patch("/update/noteid",async(req,res)=>{
     const {noteid}=req.params
     const update=await PostModel.findByIdAndUpdate({_id:noteid, customerId:req.body.customerId},req.body)
-    console.log(update,"update")
+    console.log(update,"update");
     if(update){
         res.send("story updated");
     }else{
@@ -93,7 +79,7 @@ StoryControler.patch("/update/noteid",async(req,res)=>{
     }
 })
 
-// strory delete request
+
 
 
 module.exports={StoryControler};

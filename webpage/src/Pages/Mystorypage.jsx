@@ -6,13 +6,18 @@ import MysroryitemPage from "../component/MyStoryData"
 import "./mystory.css"
 
  const Mystory=()=>{
+    //const [userName,setUserName]=useState("")
     let token=localStorage.getItem("app_token")
+    var user_name=localStorage.getItem("user_name")
+    //setUserName(user_name.name)
     const [pos,setPos]=useState([])
     const handalOut=()=>{
         token=null
+        user_name=""
         localStorage.setItem("app_token",token)
+        localStorage.setItem("user_name",JSON.stringify(user_name))
         alert("Log Out")
-       }
+    }
     const data=()=>{
         fetch("http://localhost:7000/mystory",{
             method:"GET",
@@ -23,6 +28,7 @@ import "./mystory.css"
         })
         .then((data)=>{
             console.log(data)
+            //setUserName(data[0].name)
             setPos(data)
         })
     }
@@ -30,7 +36,7 @@ import "./mystory.css"
     
     useEffect(()=>{
         data()
-        //handalDelete()
+        
     },[])
     if (!token) {
         return <Navigate replace to="/login" />;
@@ -48,7 +54,10 @@ import "./mystory.css"
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/create">Create</Link>
             <Link onClick={handalOut} style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
       
-
+             <div style={{display:"flex",alignItems:"center"}}>
+                <img style={{width:"30px"}} src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="user"/>
+                <h2 style={{color:"white"}}>{user_name}</h2>
+             </div>
       
      
        
@@ -57,7 +66,7 @@ import "./mystory.css"
                </div>
                <div className="story">
                {pos.length==0?<h1>You have not created post yet</h1>:pos.map((item)=>(
-                  <MysroryitemPage key={item._id} user={item.name} avatar={item.Image} massage={item.massage} time={item.time} ID={(item._id)}/>
+                  <MysroryitemPage key={item._id}  avatar={item.Image} massage={item.massage} time={item.time} ID={(item._id)}/>
                   
                  ))}
                </div>

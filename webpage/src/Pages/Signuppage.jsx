@@ -21,6 +21,7 @@ import "./signup.css"
                
                //customerId
            }
+           localStorage.setItem("user_name",name)
            //fetch("")
            fetch("http://localhost:7000/signup",{
                method:"POST",
@@ -62,8 +63,7 @@ import "./signup.css"
         <div className="cont">
             <div className="navbar">  
             
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/">Home</Link>
-            <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
+            
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/login">Login</Link>
             <Link style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/register">Signup</Link>
             

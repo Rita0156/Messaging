@@ -37,7 +37,7 @@ SignupControler.post("/signup",async(req,res)=>{
      else{
          res.json("user is already present")
       }
-     res.json("Signup Successfull")
+    // res.json("Signup Successfull")
     
 })
 SignupControler.post("/login",async(req,res)=>{
@@ -64,7 +64,7 @@ SignupControler.post("/login",async(req,res)=>{
        //console.log(err, "errere",pass,"pass",hash,"hash")
         if(result){
             
-              const token=jwt.sign({customerId:customer._id},Secrete)
+              const token=jwt.sign({customerId:customer._id,name:customer.name},Secrete)
               //console.log(token,"token")
               res.json({message:"Login successfull",token:token})
         }else{

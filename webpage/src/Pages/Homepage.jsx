@@ -6,11 +6,17 @@ import {Link, Navigate} from "react-router-dom"
 import "./homepage.css"
 import ItemPage from "../component/Item"
  const Homepage=()=>{
+    
   const [posts,setPos]=useState([])
   let token=localStorage.getItem("app_token")
+  var user_name=localStorage.getItem("user_name")
+  console.log(user_name)
+  //setName(user_name.name)
    const handaiOut=()=>{
     token=null
+    user_name=""
     localStorage.setItem("app_token",token)
+    localStorage.setItem("user_name",JSON.stringify(user_name))
     alert("Log Out")
    }
   const data=async()=>{
@@ -49,7 +55,7 @@ useEffect(()=>{
             <Link className="lnk" style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to="/mystory">My Story</Link>
             
             <Link className="lnk" onClick={handaiOut} style={{textDecoration:"none",color:"white",fontWeight:"bold",fontSize:"25px",background:"none"}} to ="/login">Logout</Link>
-      
+             <h2 style={{color:"white",backgroundColor:"transparent"}}>User: {user_name}</h2>
            </div>
       
            <div className="home">
