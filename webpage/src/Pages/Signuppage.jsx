@@ -23,7 +23,7 @@ import "./signup.css"
            }
            localStorage.setItem("user_name",name)
            //fetch("")
-           fetch("http://localhost:7000/signup",{
+           fetch("https://insta-app-4i97.onrender.com/signup",{
                method:"POST",
                headers: {
                    "Content-Type": "application/json",

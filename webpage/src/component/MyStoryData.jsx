@@ -7,7 +7,7 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
    //console.log(props,"props")
 
    const handalDelete=()=>{
-    fetch(`http://localhost:7000/mystory/${ID}`,{
+    fetch(`https://insta-app-4i97.onrender.com/mystory/${ID}`,{
        method:"DELETE",
        headers:{
            "Authorization":`Bearer ${token}`
