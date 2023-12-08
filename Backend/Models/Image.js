@@ -9,4 +9,4 @@ const imageSchema=new mongoose.Schema({
 const ImagetModel=mongoose.model("img_detailes",imageSchema);
 
 
-module.exports={ImagetModel}
+module.exports={ImagetModel};

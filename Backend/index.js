@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.use(express.json({limit:"70mb"}))
+app.use(express.json({limit:"70mb"}));
 app.use(bodyParser.json({limit: '70mb'}));
 app.use(express.urlencoded({limit: '70mb'}));
 
@@ -45,6 +45,7 @@ app.listen(PORT,async()=>{
    catch(err){
       console.log("failed to connect db");
       console.log(err);
+
    }
    console.log("Running port is---",PORT);
 })

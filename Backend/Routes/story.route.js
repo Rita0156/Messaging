@@ -68,16 +68,16 @@ StoryControler.post("/image_upload",async(req,res)=>{
 })
 
 // story update request
-StoryControler.patch("/update/noteid",async(req,res)=>{
-    const {noteid}=req.params
-    const update=await PostModel.findByIdAndUpdate({_id:noteid, customerId:req.body.customerId},req.body)
-    console.log(update,"update");
-    if(update){
-        res.send("story updated");
-    }else{
-        res.send("couldn't updated");
-    }
-})
+// StoryControler.patch("/update/noteid",async(req,res)=>{
+//     const {noteid}=req.params
+//     const update=await PostModel.findByIdAndUpdate({_id:noteid, customerId:req.body.customerId},req.body)
+//     console.log(update,"update");
+//     if(update){
+//         res.send("story updated");
+//     }else{
+//         res.send("couldn't updated");
+//     }
+// })
 
 
 
