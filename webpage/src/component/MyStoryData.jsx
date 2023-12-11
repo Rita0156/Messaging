@@ -1,12 +1,17 @@
 //import { json } from "express";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 //import Edit from "./Edit"
+
+import { useState } from "react"
+import LoadingSpinner from "../Pages/LodingCont"
 
 export default function MysroryitemPage({user,massage,time,avatar,ID}){
     const token=localStorage.getItem("app_token")
    //console.log(props,"props")
+   const [isLoading,setLoding]=useState(false)
 
    const handalDelete=()=>{
+    setLoding(true)
     fetch(`https://insta-app-4i97.onrender.com/mystory/${ID}`,{
        method:"DELETE",
        headers:{
@@ -14,7 +19,8 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
        }
     })
     .then((req)=>{return req.json()})
-    .then((res)=>{console.log(res)})
+    .then((res)=>{console.log(res)
+    setLoding(false)})
     .catch((err)=>{console.log(err);})
      alert("Post deleted")
     //data()
@@ -26,6 +32,7 @@ export default function MysroryitemPage({user,massage,time,avatar,ID}){
    
     return (
        <div>
+            {isLoading ?<LoadingSpinner/>:""}
            <h2>{user}</h2>
            <h3 style={{textAlign:"left",marginBottom:"15px",paddingLeft:"20px"}}>{massage}</h3>
            <img style={{width:"80%"}} src={avatar} alt="prs"/>

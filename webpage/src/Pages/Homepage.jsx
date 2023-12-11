@@ -8,6 +8,7 @@ import ItemPage from "../component/Item"
  const Homepage=()=>{
     
   const [posts,setPos]=useState([])
+  const [isLoading,setLoding]=useState(true)
   let token=localStorage.getItem("app_token")
   var user_name=localStorage.getItem("user_name")
   console.log(user_name)
@@ -21,6 +22,7 @@ import ItemPage from "../component/Item"
    }
   const data=async()=>{
     console.log("fetching req")
+    setLoding(true)
    await fetch("https://insta-app-4i97.onrender.com/story",{
         method:"GET",
         headers: { "Authorization":`Bearer ${token}`}
@@ -32,7 +34,9 @@ import ItemPage from "../component/Item"
     })
     .then((res)=>{
         console.log(res,"res")
+        setLoding(false)
         setPos(res)
+        
     })
 
    
@@ -58,7 +62,7 @@ useEffect(()=>{
              <h2 style={{color:"white",backgroundColor:"transparent"}}>User: {user_name}</h2>
            </div>
       
-           <div className="home">
+           <div className="home loading-spinner" disabled={isLoading}>
            {posts.length>0 && posts.map((item)=>
                  <ItemPage key={item._id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time}/>
              )}
