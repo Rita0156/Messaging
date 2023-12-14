@@ -2,7 +2,7 @@
 import { useState,useEffect } from "react"
 import {Link,Navigate} from "react-router-dom"
 //import Edit from "../component/Edit"
-import MysroryitemPage from "../component/MyStoryData"
+import {MysroryitemPage} from "../component/MyStoryData"
 import "./mystory.css"
 
  const Mystory=()=>{
@@ -10,6 +10,7 @@ import "./mystory.css"
     let token=localStorage.getItem("app_token")
     var user_name=localStorage.getItem("user_name")
     //setUserName(user_name.name)
+    //console.log(isLoadingpage,"load page")
     const [pos,setPos]=useState([])
     const handalOut=()=>{
         token=null

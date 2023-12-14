@@ -19,9 +19,9 @@ StoryControler.delete("/mystory/:delid",async(req,res)=>{
     const deletePost=await PostModel.findByIdAndDelete({_id:delid, customerId:req.body.customerId})
     console.log(deletePost,"deletePost");
     if(deletePost){
-        res.send("story deleted");
+        res.json("story deleted");
     }else{
-        res.send("couldn't delete");
+        res.json("couldn't delete");
     }
 })
 
