@@ -4,9 +4,10 @@
 
 import { useState } from "react"
 //import LoadingSpinner from "../Pages/LodingCont"
-var isLoadingpage;
+//var isLoadingpage=0
  function MysroryitemPage({user,massage,time,avatar,ID}){
     const token=localStorage.getItem("app_token")
+     //const [reRender,setreRander]=useState(false)
    //console.log(props,"props")
    //const [isLoading,setLoding]=useState(false)
    
@@ -21,9 +22,9 @@ var isLoadingpage;
             }
          })
          .then((req)=>{return req.json()})
-         .then((res)=>{console.log(res,"deleted")
+         .then((res)=>{console.log(res)
          //setLoding(setLoding?true:false)
-          isLoadingpage=ID
+          //isLoadingpage=isLoadingpage+1
          })
          .catch((err)=>{console.log(err);})
           alert("Post deleted")
@@ -46,4 +47,4 @@ var isLoadingpage;
        </div>
     )
 }
-export {MysroryitemPage,isLoadingpage}
+export default MysroryitemPage

@@ -2,7 +2,7 @@
 import { useState,useEffect } from "react"
 import {Link,Navigate} from "react-router-dom"
 //import Edit from "../component/Edit"
-import {MysroryitemPage} from "../component/MyStoryData"
+import MysroryitemPage from "../component/MyStoryData"
 import "./mystory.css"
 
  const Mystory=()=>{

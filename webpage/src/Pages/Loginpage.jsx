@@ -6,6 +6,7 @@ import "./login.css"
  const LoginFun=()=>{
      const [email,setEmail]=useState("")
      const [pass,setPass]=useState("")
+    
      //const navigate = useNavigate()
      const navigate=useNavigate()
      const [isAuth,setAuth]=useState(false)
