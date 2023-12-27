@@ -9,6 +9,9 @@ import "./mystory.css"
     //const [userName,setUserName]=useState("")
     let token=localStorage.getItem("app_token")
     var user_name=localStorage.getItem("user_name")
+    const [total,setTotal]=useState(false)
+    const [Id,setId]=useState('')
+
     //setUserName(user_name.name)
     //console.log(isLoadingpage,"load page")
     const [pos,setPos]=useState([])
@@ -30,15 +33,52 @@ import "./mystory.css"
         .then((data)=>{
             console.log(data)
             //setUserName(data[0].name)
+            setTotal(data.length)
             setPos(data)
         })
     }
     
-    
+    // function handalDelete(ID){
+    //     fetch(`https://insta-app-4i97.onrender.com/mystory/${ID}`,{
+    //         method:"DELETE",
+    //         headers:{
+    //             "Authorization":`Bearer ${token}`
+    //         }
+    //      })
+    //      .then((req)=>{return req.json()})
+    //      .then((res)=>{console.log(res)
+    //      //setLoding(setLoding?true:false)
+    //       //isLoadingpage=isLoadingpage+1
+    //      })
+    //      .catch((err)=>{console.log(err);})
+    //       alert("Post deleted")
+    //      data()
+         
+    // }
     useEffect(()=>{
         data()
+
+        if(total==true && Id==true){
+            fetch(`https://insta-app-4i97.onrender.com/mystory/${Id}`,{
+            method:"DELETE",
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
+         })
+         .then((req)=>{return req.json()})
+         .then((res)=>{console.log(res)
+         //setLoding(setLoding?true:false)
+          //isLoadingpage=isLoadingpage+1
+          alert("Post deleted")
+          data()
+          setTotal(false)
+          setId('')
+         })
+         .catch((err)=>{console.log(err);})
+         
+        }
         
-    },[])
+    },[total,Id])
     if (!token) {
         return <Navigate replace to="/login" />;
     }
@@ -66,8 +106,18 @@ import "./mystory.css"
  
                </div>
                <div className="story">
-               {pos.length==0?<h1>You have not created post yet</h1>:pos.map((item)=>(
-                  <MysroryitemPage key={item._id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time} ID={item._id} />
+            {(pos.length==0&& pos==undefined)?<h1 style={{textAlign:"center"}}>You have not created post yet</h1>:pos.map((item)=>(
+                //   <MysroryitemPage key={item._id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time} ID={item._id} />
+                   <div key={item._id}>
+                        <h2>{item.name}</h2>
+                        <h3 style={{textAlign:"left",marginBottom:"15px",paddingLeft:"20px"}}>{item.massage}</h3>
+                        <img style={{width:"80%"}} src={item.Image} alt="prs"/>
+                        <p style={{marginBottom:"20px"}}>{item.item}</p>
+                        <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px",cursor:"pointer"}} onClick={()=>{
+                            setTotal(true)
+                            setPos(item._id)
+                        }}>Delete</button>
+                   </div>
                  ))}
                </div>
         </div>
