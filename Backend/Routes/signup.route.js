@@ -66,7 +66,7 @@ SignupControler.post("/login",async(req,res)=>{
             
               const token=jwt.sign({customerId:customer._id,name:customer.name},Secrete)
               //console.log(token,"token")
-              res.json({message:"Login successfull",token:token})
+              res.json({message:"Login successfull",token:token,name:customer.name})
         }else{
             res.json("Invalid credential");
         }

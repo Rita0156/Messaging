@@ -2,18 +2,31 @@
 //import { Link } from "react-router-dom";
 //import Edit from "./Edit"
 
-import { useState } from "react"
-//import LoadingSpinner from "../Pages/LodingCont"
-//var isLoadingpage=0
- function MysroryitemPage({user,massage,time,avatar,ID}){
+import { useEffect, useState } from "react"
+
+ function MysroryitemPage({props}){
     const token=localStorage.getItem("app_token")
-     //const [reRender,setreRander]=useState(false)
-   //console.log(props,"props")
-   //const [isLoading,setLoding]=useState(false)
+     const [DataAction,setData]=useState([])
+
+     const data=()=>{
+        fetch("https://insta-app-4i97.onrender.com/mystory",{
+            method:"GET",
+            headers: { "Authorization": `Bearer ${token}`}
+        })
+        .then((req)=>{
+            return req.json()
+        })
+        .then((data)=>{
+            console.log(data)
+            //setUserName(data[0].name)
+            //setTotal(data.length)
+            //setPos(data)
+            setData(data)
+        })
+    }
+    
    
-    //const [load,set]
-   
-    const handalDelete=()=>{
+    const handalDelete=(ID)=>{
         // setLoding(true)
          fetch(`https://insta-app-4i97.onrender.com/mystory/${ID}`,{
             method:"DELETE",
@@ -22,27 +35,37 @@ import { useState } from "react"
             }
          })
          .then((req)=>{return req.json()})
-         .then((res)=>{console.log(res)
-         //setLoding(setLoding?true:false)
-          //isLoadingpage=isLoadingpage+1
+         .then((res)=>{
+            console.log(res)
+            alert("Post deleted")
+            setData(res)
+            data()
          })
          .catch((err)=>{console.log(err);})
-          alert("Post deleted")
-         //data()
+          
+        
          
      }
+
+     useEffect(()=>{
+          setData(props)
+     },[])
     
     
    
     return (
        <div>
-            
-           <h2>{user}</h2>
-           <h3 style={{textAlign:"left",marginBottom:"15px",paddingLeft:"20px"}}>{massage}</h3>
-           <img style={{width:"80%"}} src={avatar} alt="prs"/>
-           <p style={{marginBottom:"20px"}}>{time}</p>
-           <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px"}} onClick={handalDelete}>Delete</button>
+           {DataAction.map((item)=>{
+              <div>
+                   
+                 <h2>{item.name}</h2>
+                 <h3 style={{textAlign:"left",marginBottom:"15px",paddingLeft:"20px"}}>{}</h3>
+                 <img style={{width:"80%"}} src={item.Image} alt="prs"/>
+                 <p style={{marginBottom:"20px"}}>{item.time}</p>
+                <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px"}} onClick={handalDelete(item._id)}>Delete</button>
            
+              </div>
+           })}
            
        </div>
     )

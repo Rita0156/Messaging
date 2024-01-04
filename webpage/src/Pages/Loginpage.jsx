@@ -32,6 +32,7 @@ import "./login.css"
                 console.log(res)
                 if(res.token){
                     localStorage.setItem("app_token",res.token)
+                    localStorage.setItem("user_name",res.name)
                     setAuth(true)
                     alert("Login Successfull")
                 }

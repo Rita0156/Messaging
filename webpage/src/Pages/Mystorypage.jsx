@@ -58,27 +58,9 @@ import "./mystory.css"
     useEffect(()=>{
         data()
 
-        if(total==true && Id==true){
-            fetch(`https://insta-app-4i97.onrender.com/mystory/${Id}`,{
-            method:"DELETE",
-            headers:{
-                "Authorization":`Bearer ${token}`
-            }
-         })
-         .then((req)=>{return req.json()})
-         .then((res)=>{console.log(res)
-         //setLoding(setLoding?true:false)
-          //isLoadingpage=isLoadingpage+1
-          alert("Post deleted")
-          data()
-          setTotal(false)
-          setId('')
-         })
-         .catch((err)=>{console.log(err);})
-         
-        }
+       
         
-    },[total,Id])
+    },[])
     if (!token) {
         return <Navigate replace to="/login" />;
     }
@@ -106,19 +88,7 @@ import "./mystory.css"
  
                </div>
                <div className="story">
-            {(pos.length==0&& pos==undefined)?<h1 style={{textAlign:"center"}}>You have not created post yet</h1>:pos.map((item)=>(
-                //   <MysroryitemPage key={item._id} user={item.name} massage={item.massage} avatar={item.Image} time={item.time} ID={item._id} />
-                   <div key={item._id}>
-                        <h2>{item.name}</h2>
-                        <h3 style={{textAlign:"left",marginBottom:"15px",paddingLeft:"20px"}}>{item.massage}</h3>
-                        <img style={{width:"80%"}} src={item.Image} alt="prs"/>
-                        <p style={{marginBottom:"20px"}}>{item.item}</p>
-                        <button style={{border:"2px solid white",color:"white",fontWeight:"bold", fontSize:"17px",padding:"5px",borderRadius:"10px",cursor:"pointer"}} onClick={()=>{
-                            setTotal(true)
-                            setPos(item._id)
-                        }}>Delete</button>
-                   </div>
-                 ))}
+                      <MysroryitemPage props={pos}/>
                </div>
         </div>
     )
