@@ -1,5 +1,5 @@
 import axios from "axios"
-import * as types from "./types"
+import * as types from "./actionType"
 
 const loginFunction=(payLoad)=>(dispatch)=>{
     dispatch({type:types.LOGIN_REQUEST})

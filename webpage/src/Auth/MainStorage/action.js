@@ -1,10 +1,11 @@
 
+import { type } from "os";
 import * as types from "./actionType";
 import axios from "axios";
 
-export const getDataMusic=(params)=>(dispatch)=>{
+export const getDataStory=()=>(dispatch)=>{
      dispatch({type:types.GET_DATA_REQUEST}) 
-   return axios.get(`http://localhost:8080/albums`,params)
+   return axios.get(`https://insta-app-4i97.onrender.com/story`)
     .then((d)=>{
         return dispatch({
             type:types.GET_DATA_SUCCESS,
@@ -18,13 +19,15 @@ export const getDataMusic=(params)=>(dispatch)=>{
     })
 }
 
-export const getMyStoryData=(params)=>(dispatch)=>{
+export const getMyStoryData=()=>(dispatch)=>{
     dispatch({type:types.MYSTORY_REQUEST}) 
-  return axios.get(`http://localhost:8080/albums`,params)
+  return axios.get(`https://insta-app-4i97.onrender.com/mystory`)
    .then((d)=>{
+    console.log(d," mystory req res")
        return dispatch({
            type:types.MYSTORY_SUCCESS,
-           payLoad:d.data
+           payLoad:d
+
        })
    })
    .catch((e)=>{
@@ -32,10 +35,27 @@ export const getMyStoryData=(params)=>(dispatch)=>{
            type:types.MYSTORY_FAILURE
        })
    })
+   //console.log("ge")
 }
 
-const deleteItem=()=>{
-    return axios.delete(`http://localhost:7000/update/`)
+
+export const deleteItem=(id)=>(dispatch)=>{
+    dispatch({type:types.MYSTORY_DELETE_REQUEST})
+    return axios.delete(`https://insta-app-4i97.onrender.com/mystory/${id}`)
+    .then((d)=>{
+        return dispatch({
+            type:types.MYSTORY_DELETE_SUCCESS,
+            
+        })
+
+    })
+    .catch((e)=>{
+        return dispatch({
+            type:types.MYSTORY_DELETE_FAILURE
+        })
+    })
+
+    //getMyStoryData()
 }
 
 

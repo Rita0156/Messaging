@@ -1,6 +1,7 @@
 import * as types from "./actionType"
 const initState={
-    musicRecords:[],
+    story:[],
+    mystory:[],
     isLoading:false,
     isError:false
 }
@@ -16,10 +17,26 @@ export const reducer=( oldState=initState,action)=>{
         case types.GET_DATA_SUCCESS :return {
             ...oldState,
             isLoading:false,
-            musicRecords:payLoad,
+            story:payLoad,
             isError:false
         }
         case types.GET_DATA_FAILURE :return {
+            ...oldState,
+            isLoading:false,
+            isError:true
+        }
+        case types.MYSTORY_REQUEST :return {
+            ...oldState,
+            isLoading:true,
+            isError:false
+        }
+        case types.MYSTORY_SUCCESS :return {
+            ...oldState,
+            isLoading:false,
+            mystory:payLoad,
+            isError:false
+        }
+        case types.MYSTORY_FAILURE :return {
             ...oldState,
             isLoading:false,
             isError:true
@@ -29,3 +46,4 @@ export const reducer=( oldState=initState,action)=>{
             return oldState
        }
 }
+console.log(initState,"init")
